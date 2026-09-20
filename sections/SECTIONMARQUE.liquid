@@ -1,43 +1,49 @@
 {% style %}
 
 /* =========================================================
-   VU SUR — FREZZE
+   FREZZE — SECTION "VU SUR"
    ========================================================= */
 
-#vu-sur-{{ section.id }} {
+#press-{{ section.id }} {
   background: {{ section.settings.section_bg }};
-  padding-top: {{ section.settings.padding_top }}px;
-  padding-bottom: {{ section.settings.padding_bottom }}px;
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
 }
 
-#vu-sur-{{ section.id }} .vu-sur__container {
+#press-{{ section.id }} .press-wrap {
   width: min(
-    calc(100% - ({{ section.settings.side_padding_desktop }}px * 2)),
+    calc(100% - {{ section.settings.side_padding_desktop | times: 2 }}px),
     {{ section.settings.max_width }}px
   );
   margin: 0 auto;
 }
 
-/* ---------- TITRE ---------- */
 
-#vu-sur-{{ section.id }} .vu-sur__title {
-  margin: 0 0 {{ section.settings.title_margin_bottom }}px;
+/* =========================================================
+   TITRE
+   ========================================================= */
+
+#press-{{ section.id }} .press-title {
+  margin: 0 0 {{ section.settings.title_gap_desktop }}px;
   padding: 0;
 
   text-align: center;
 
-  color: {{ section.settings.title_color }};
-
   font-size: {{ section.settings.title_size_desktop }}px;
-  line-height: 1.05;
+  line-height: 1;
 
   font-weight: {{ section.settings.title_weight }};
   letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 10.0 }}px;
+
+  color: {{ section.settings.title_color }};
 }
 
-/* ---------- GRILLE ---------- */
 
-#vu-sur-{{ section.id }} .vu-sur__grid {
+/* =========================================================
+   GRILLE
+   ========================================================= */
+
+#press-{{ section.id }} .press-grid {
   display: grid;
 
   grid-template-columns:
@@ -46,33 +52,43 @@
   gap: {{ section.settings.gap_desktop }}px;
 }
 
-/* ---------- CARTE ---------- */
 
-#vu-sur-{{ section.id }} .vu-sur__card {
+/* =========================================================
+   CARTES
+   ========================================================= */
+
+#press-{{ section.id }} .press-card {
   position: relative;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   width: 100%;
 
-  aspect-ratio: {{ section.settings.ratio_desktop }};
-
-  padding: {{ section.settings.card_padding_desktop }}px;
+  aspect-ratio: {{ section.settings.card_ratio_desktop }};
 
   box-sizing: border-box;
+
+  overflow: hidden;
+
+  padding: {{ section.settings.card_padding_desktop }}px;
 
   background: {{ section.settings.card_bg }};
 
   border-radius: {{ section.settings.card_radius }}px;
 
-  overflow: hidden;
+  {% if section.settings.border_enabled %}
+    border: 1px solid {{ section.settings.border_color }};
+  {% endif %}
 }
 
-/* ---------- LOGOS ---------- */
 
-#vu-sur-{{ section.id }} .vu-sur__logo {
+/* =========================================================
+   IMAGES
+   ========================================================= */
+
+#press-{{ section.id }} .press-logo {
   display: block;
 
   width: auto;
@@ -80,31 +96,51 @@
 
   object-fit: contain;
 
-  max-height: 70%;
+  transform-origin: center;
 }
 
-/* Vogue */
 
-#vu-sur-{{ section.id }} .logo-vogue {
-  max-width: {{ section.settings.vogue_size_desktop }}%;
+/* VOGUE */
+
+#press-{{ section.id }} .logo-vogue {
+  max-width: {{ section.settings.vogue_width_desktop }}%;
+  max-height: {{ section.settings.vogue_height_desktop }}%;
+
+  transform:
+    scale({{ section.settings.vogue_zoom_desktop | divided_by: 100.0 }});
 }
 
-/* Voici */
 
-#vu-sur-{{ section.id }} .logo-voici {
-  max-width: {{ section.settings.voici_size_desktop }}%;
+/* VOICI */
+
+#press-{{ section.id }} .logo-voici {
+  max-width: {{ section.settings.voici_width_desktop }}%;
+  max-height: {{ section.settings.voici_height_desktop }}%;
+
+  transform:
+    scale({{ section.settings.voici_zoom_desktop | divided_by: 100.0 }});
 }
 
-/* Marie Claire */
 
-#vu-sur-{{ section.id }} .logo-marie {
-  max-width: {{ section.settings.marie_size_desktop }}%;
+/* TF1 */
+
+#press-{{ section.id }} .logo-tf1 {
+  max-width: {{ section.settings.tf1_width_desktop }}%;
+  max-height: {{ section.settings.tf1_height_desktop }}%;
+
+  transform:
+    scale({{ section.settings.tf1_zoom_desktop | divided_by: 100.0 }});
 }
 
-/* Cosmopolitan */
 
-#vu-sur-{{ section.id }} .logo-cosmo {
-  max-width: {{ section.settings.cosmo_size_desktop }}%;
+/* COSMOPOLITAN */
+
+#press-{{ section.id }} .logo-cosmo {
+  max-width: {{ section.settings.cosmo_width_desktop }}%;
+  max-height: {{ section.settings.cosmo_height_desktop }}%;
+
+  transform:
+    scale({{ section.settings.cosmo_zoom_desktop | divided_by: 100.0 }});
 }
 
 
@@ -114,51 +150,79 @@
 
 @media screen and (max-width: 749px) {
 
-  #vu-sur-{{ section.id }} {
+  #press-{{ section.id }} {
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   }
 
-  #vu-sur-{{ section.id }} .vu-sur__container {
+  #press-{{ section.id }} .press-wrap {
     width: calc(
-      100% - ({{ section.settings.side_padding_mobile }}px * 2)
+      100% - {{ section.settings.side_padding_mobile | times: 2 }}px
     );
   }
 
-  #vu-sur-{{ section.id }} .vu-sur__title {
+  #press-{{ section.id }} .press-title {
     font-size: {{ section.settings.title_size_mobile }}px;
 
     margin-bottom:
-      {{ section.settings.title_margin_bottom_mobile }}px;
+      {{ section.settings.title_gap_mobile }}px;
   }
 
-  #vu-sur-{{ section.id }} .vu-sur__grid {
+  #press-{{ section.id }} .press-grid {
     grid-template-columns:
       repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
 
     gap: {{ section.settings.gap_mobile }}px;
   }
 
-  #vu-sur-{{ section.id }} .vu-sur__card {
-    aspect-ratio: {{ section.settings.ratio_mobile }};
+  #press-{{ section.id }} .press-card {
+    aspect-ratio: {{ section.settings.card_ratio_mobile }};
 
     padding: {{ section.settings.card_padding_mobile }}px;
   }
 
-  #vu-sur-{{ section.id }} .logo-vogue {
-    max-width: {{ section.settings.vogue_size_mobile }}%;
+
+  /* VOGUE MOBILE */
+
+  #press-{{ section.id }} .logo-vogue {
+    max-width: {{ section.settings.vogue_width_mobile }}%;
+    max-height: {{ section.settings.vogue_height_mobile }}%;
+
+    transform:
+      scale({{ section.settings.vogue_zoom_mobile | divided_by: 100.0 }});
   }
 
-  #vu-sur-{{ section.id }} .logo-voici {
-    max-width: {{ section.settings.voici_size_mobile }}%;
+
+  /* VOICI MOBILE */
+
+  #press-{{ section.id }} .logo-voici {
+    max-width: {{ section.settings.voici_width_mobile }}%;
+    max-height: {{ section.settings.voici_height_mobile }}%;
+
+    transform:
+      scale({{ section.settings.voici_zoom_mobile | divided_by: 100.0 }});
   }
 
-  #vu-sur-{{ section.id }} .logo-marie {
-    max-width: {{ section.settings.marie_size_mobile }}%;
+
+  /* TF1 MOBILE */
+
+  #press-{{ section.id }} .logo-tf1 {
+    max-width: {{ section.settings.tf1_width_mobile }}%;
+    max-height: {{ section.settings.tf1_height_mobile }}%;
+
+    transform:
+      scale({{ section.settings.tf1_zoom_mobile | divided_by: 100.0 }});
   }
 
-  #vu-sur-{{ section.id }} .logo-cosmo {
-    max-width: {{ section.settings.cosmo_size_mobile }}%;
+
+  /* COSMO MOBILE */
+
+  #press-{{ section.id }} .logo-cosmo {
+    max-width: {{ section.settings.cosmo_width_mobile }}%;
+    max-height: {{ section.settings.cosmo_height_mobile }}%;
+
+    transform:
+      scale({{ section.settings.cosmo_zoom_mobile | divided_by: 100.0 }});
   }
 
 }
@@ -166,103 +230,116 @@
 {% endstyle %}
 
 
-<section id="vu-sur-{{ section.id }}">
+<section id="press-{{ section.id }}">
 
-  <div class="vu-sur__container">
+  <div class="press-wrap">
 
     {% if section.settings.title != blank %}
 
-      <h2 class="vu-sur__title">
+      <h2 class="press-title">
         {{ section.settings.title }}
       </h2>
 
     {% endif %}
 
 
-    <div class="vu-sur__grid">
+    <div class="press-grid">
 
-      <!-- VOGUE -->
 
-      <div class="vu-sur__card">
+      <!-- =====================================================
+           VOGUE
+           ===================================================== -->
+
+      <div class="press-card">
 
         <img
-          class="vu-sur__logo logo-vogue"
+          class="press-logo logo-vogue"
 
-          src="https://averaparis.com/cdn/shop/files/f3bd8e7f-8ae4-49fa-b9eb-defd662e1cca.webp?v=1787151149&width=800"
+          src="https://averaparis.com/cdn/shop/files/f3bd8e7f-8ae4-49fa-b9eb-defd662e1cca.webp?v=1787151149&width=1000"
 
           alt="Vogue"
 
           loading="lazy"
           decoding="async"
 
-          width="800"
-          height="500"
+          width="1000"
+          height="600"
         >
 
       </div>
 
 
-      <!-- VOICI -->
 
-      <div class="vu-sur__card">
+      <!-- =====================================================
+           VOICI
+           ===================================================== -->
+
+      <div class="press-card">
 
         <img
-          class="vu-sur__logo logo-voici"
+          class="press-logo logo-voici"
 
-          src="https://averaparis.com/cdn/shop/files/cfa4a636-7de1-42eb-8553-4c72eecae22f.webp?v=1787151149&width=800"
+          src="https://averaparis.com/cdn/shop/files/cfa4a636-7de1-42eb-8553-4c72eecae22f.webp?v=1787151149&width=1000"
 
           alt="Voici"
 
           loading="lazy"
           decoding="async"
 
-          width="800"
-          height="500"
+          width="1000"
+          height="600"
         >
 
       </div>
 
 
-      <!-- MARIE CLAIRE -->
 
-      <div class="vu-sur__card">
+      <!-- =====================================================
+           TF1
+           ===================================================== -->
+
+      <div class="press-card">
 
         <img
-          class="vu-sur__logo logo-marie"
+          class="press-logo logo-tf1"
 
-          src="https://averaparis.com/cdn/shop/files/e525f5e1-2ac0-4ad3-b8ce-f2a580da9271.png?v=1787151501&width=800"
+          src="https://cdn.prod.website-files.com/66623b8ed9fb98b455123844/6669c1920232836a2ee3dfd5_tf1-logo-black-and-white.png"
 
-          alt="Marie Claire"
+          alt="TF1"
 
           loading="lazy"
           decoding="async"
 
-          width="800"
-          height="500"
+          width="1200"
+          height="600"
         >
 
       </div>
 
 
-      <!-- COSMOPOLITAN -->
 
-      <div class="vu-sur__card">
+      <!-- =====================================================
+           COSMOPOLITAN
+           ===================================================== -->
+
+      <div class="press-card">
 
         <img
-          class="vu-sur__logo logo-cosmo"
+          class="press-logo logo-cosmo"
 
-          src="https://averaparis.com/cdn/shop/files/Cosmopolitan-Emblem.png?v=1787151478&width=1000"
+          src="https://averaparis.com/cdn/shop/files/Cosmopolitan-Emblem.png?v=1787151478&width=1600"
 
           alt="Cosmopolitan"
 
           loading="lazy"
           decoding="async"
 
-          width="1000"
-          height="500"
+          width="1600"
+          height="800"
         >
 
       </div>
+
 
     </div>
 
@@ -271,16 +348,18 @@
 </section>
 
 
+
 {% schema %}
 
 {
-  "name": "Vu sur — Presse",
+  "name": "Vu sur",
 
   "tag": "section",
 
   "class": "section-vu-sur",
 
   "settings": [
+
 
     {
       "type": "header",
@@ -305,58 +384,51 @@
       "type": "range",
       "id": "title_size_desktop",
       "min": 18,
-      "max": 64,
+      "max": 60,
       "step": 1,
       "unit": "px",
       "label": "Taille titre — ordinateur",
-      "default": 34
+      "default": 32
     },
 
     {
       "type": "range",
       "id": "title_size_mobile",
       "min": 18,
-      "max": 42,
+      "max": 46,
       "step": 1,
       "unit": "px",
       "label": "Taille titre — mobile",
-      "default": 27
+      "default": 28
     },
 
     {
       "type": "select",
       "id": "title_weight",
       "label": "Épaisseur titre",
-
       "default": "400",
 
       "options": [
-
         {
           "value": "300",
           "label": "Fin"
         },
-
         {
           "value": "400",
           "label": "Normal"
         },
-
         {
           "value": "500",
           "label": "Moyen"
         },
-
         {
           "value": "600",
           "label": "Semi-gras"
         },
-
         {
           "value": "700",
           "label": "Gras"
         }
-
       ]
     },
 
@@ -372,8 +444,8 @@
 
     {
       "type": "range",
-      "id": "title_margin_bottom",
-      "min": 10,
+      "id": "title_gap_desktop",
+      "min": 0,
       "max": 80,
       "step": 2,
       "unit": "px",
@@ -383,13 +455,13 @@
 
     {
       "type": "range",
-      "id": "title_margin_bottom_mobile",
-      "min": 10,
+      "id": "title_gap_mobile",
+      "min": 0,
       "max": 60,
       "step": 2,
       "unit": "px",
       "label": "Espace sous titre — mobile",
-      "default": 26
+      "default": 24
     },
 
 
@@ -402,14 +474,14 @@
       "type": "color",
       "id": "card_bg",
       "label": "Couleur des cartes",
-      "default": "#F7F2E8"
+      "default": "#F8F0DF"
     },
 
     {
       "type": "range",
       "id": "card_radius",
       "min": 0,
-      "max": 30,
+      "max": 40,
       "step": 1,
       "unit": "px",
       "label": "Arrondi cartes",
@@ -418,85 +490,73 @@
 
     {
       "type": "select",
-      "id": "ratio_desktop",
-      "label": "Forme carte — ordinateur",
-
-      "default": "1.5 / 1",
+      "id": "card_ratio_desktop",
+      "label": "Forme cartes — ordinateur",
+      "default": "1.6 / 1",
 
       "options": [
-
         {
           "value": "1 / 1",
           "label": "Carré"
         },
-
         {
           "value": "1.2 / 1",
-          "label": "Rectangle léger"
+          "label": "Très légèrement rectangle"
         },
-
         {
           "value": "1.35 / 1",
-          "label": "Rectangle"
+          "label": "Rectangle léger"
         },
-
         {
           "value": "1.5 / 1",
+          "label": "Rectangle"
+        },
+        {
+          "value": "1.6 / 1",
           "label": "Rectangle large"
         },
-
         {
-          "value": "1.75 / 1",
+          "value": "1.8 / 1",
           "label": "Très large"
         },
-
         {
           "value": "2 / 1",
           "label": "Panoramique"
         }
-
       ]
     },
 
     {
       "type": "select",
-      "id": "ratio_mobile",
-      "label": "Forme carte — mobile",
-
-      "default": "1.25 / 1",
+      "id": "card_ratio_mobile",
+      "label": "Forme cartes — mobile",
+      "default": "1.4 / 1",
 
       "options": [
-
         {
           "value": "1 / 1",
           "label": "Carré"
         },
-
         {
-          "value": "1.15 / 1",
+          "value": "1.2 / 1",
           "label": "Très légèrement rectangle"
         },
-
         {
-          "value": "1.25 / 1",
+          "value": "1.3 / 1",
           "label": "Rectangle léger"
         },
-
         {
-          "value": "1.35 / 1",
+          "value": "1.4 / 1",
           "label": "Rectangle"
         },
-
         {
-          "value": "1.5 / 1",
+          "value": "1.55 / 1",
           "label": "Rectangle large"
         },
-
         {
-          "value": "1.75 / 1",
+          "value": "1.7 / 1",
           "label": "Très large"
         }
-
       ]
     },
 
@@ -504,10 +564,10 @@
       "type": "range",
       "id": "card_padding_desktop",
       "min": 0,
-      "max": 60,
+      "max": 70,
       "step": 2,
       "unit": "px",
-      "label": "Marge interne — ordinateur",
+      "label": "Marge intérieure — ordinateur",
       "default": 24
     },
 
@@ -518,108 +578,310 @@
       "max": 50,
       "step": 2,
       "unit": "px",
-      "label": "Marge interne — mobile",
-      "default": 18
+      "label": "Marge intérieure — mobile",
+      "default": 16
+    },
+
+    {
+      "type": "checkbox",
+      "id": "border_enabled",
+      "label": "Afficher une bordure",
+      "default": false
+    },
+
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Couleur bordure",
+      "default": "#EAEAEA"
     },
 
 
     {
       "type": "header",
-      "content": "Taille des logos — ordinateur"
+      "content": "Vogue"
     },
 
     {
       "type": "range",
-      "id": "vogue_size_desktop",
-      "min": 30,
+      "id": "vogue_width_desktop",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Vogue",
+      "label": "Largeur — ordinateur",
       "default": 68
     },
 
     {
       "type": "range",
-      "id": "voici_size_desktop",
-      "min": 30,
+      "id": "vogue_height_desktop",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Voici",
-      "default": 56
+      "label": "Hauteur — ordinateur",
+      "default": 65
     },
 
     {
       "type": "range",
-      "id": "marie_size_desktop",
-      "min": 30,
-      "max": 100,
-      "step": 1,
+      "id": "vogue_zoom_desktop",
+      "min": 50,
+      "max": 180,
+      "step": 5,
       "unit": "%",
-      "label": "Marie Claire",
-      "default": 67
+      "label": "Zoom — ordinateur",
+      "default": 100
     },
 
     {
       "type": "range",
-      "id": "cosmo_size_desktop",
-      "min": 30,
+      "id": "vogue_width_mobile",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Cosmopolitan",
+      "label": "Largeur — mobile",
+      "default": 70
+    },
+
+    {
+      "type": "range",
+      "id": "vogue_height_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — mobile",
+      "default": 65
+    },
+
+    {
+      "type": "range",
+      "id": "vogue_zoom_mobile",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — mobile",
+      "default": 100
+    },
+
+
+    {
+      "type": "header",
+      "content": "Voici"
+    },
+
+    {
+      "type": "range",
+      "id": "voici_width_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Largeur — ordinateur",
+      "default": 58
+    },
+
+    {
+      "type": "range",
+      "id": "voici_height_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — ordinateur",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "voici_zoom_desktop",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — ordinateur",
+      "default": 100
+    },
+
+    {
+      "type": "range",
+      "id": "voici_width_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Largeur — mobile",
+      "default": 58
+    },
+
+    {
+      "type": "range",
+      "id": "voici_height_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — mobile",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "voici_zoom_mobile",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — mobile",
+      "default": 100
+    },
+
+
+    {
+      "type": "header",
+      "content": "TF1"
+    },
+
+    {
+      "type": "range",
+      "id": "tf1_width_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Largeur — ordinateur",
       "default": 72
     },
 
+    {
+      "type": "range",
+      "id": "tf1_height_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — ordinateur",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "tf1_zoom_desktop",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — ordinateur",
+      "default": 100
+    },
+
+    {
+      "type": "range",
+      "id": "tf1_width_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Largeur — mobile",
+      "default": 72
+    },
+
+    {
+      "type": "range",
+      "id": "tf1_height_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — mobile",
+      "default": 58
+    },
+
+    {
+      "type": "range",
+      "id": "tf1_zoom_mobile",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — mobile",
+      "default": 100
+    },
+
 
     {
       "type": "header",
-      "content": "Taille des logos — mobile"
+      "content": "Cosmopolitan"
     },
 
     {
       "type": "range",
-      "id": "vogue_size_mobile",
-      "min": 30,
+      "id": "cosmo_width_desktop",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Vogue",
-      "default": 66
+      "label": "Largeur — ordinateur",
+      "default": 72
     },
 
     {
       "type": "range",
-      "id": "voici_size_mobile",
-      "min": 30,
+      "id": "cosmo_height_desktop",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Voici",
-      "default": 52
+      "label": "Hauteur — ordinateur",
+      "default": 60
     },
 
     {
       "type": "range",
-      "id": "marie_size_mobile",
-      "min": 30,
-      "max": 100,
-      "step": 1,
+      "id": "cosmo_zoom_desktop",
+      "min": 50,
+      "max": 180,
+      "step": 5,
       "unit": "%",
-      "label": "Marie Claire",
-      "default": 62
+      "label": "Zoom — ordinateur",
+      "default": 100
     },
 
     {
       "type": "range",
-      "id": "cosmo_size_mobile",
-      "min": 30,
+      "id": "cosmo_width_mobile",
+      "min": 20,
       "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Cosmopolitan",
-      "default": 68
+      "label": "Largeur — mobile",
+      "default": 72
+    },
+
+    {
+      "type": "range",
+      "id": "cosmo_height_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur — mobile",
+      "default": 60
+    },
+
+    {
+      "type": "range",
+      "id": "cosmo_zoom_mobile",
+      "min": 50,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "label": "Zoom — mobile",
+      "default": 100
     },
 
 
@@ -634,29 +896,25 @@
       "min": 2,
       "max": 4,
       "step": 1,
-      "label": "Colonnes ordinateur",
+      "label": "Colonnes — ordinateur",
       "default": 4
     },
 
     {
       "type": "select",
       "id": "columns_mobile",
-      "label": "Colonnes mobile",
-
+      "label": "Colonnes — mobile",
       "default": "2",
 
       "options": [
-
         {
           "value": "1",
           "label": "1 colonne"
         },
-
         {
           "value": "2",
           "label": "2 colonnes"
         }
-
       ]
     },
 
@@ -664,10 +922,10 @@
       "type": "range",
       "id": "gap_desktop",
       "min": 0,
-      "max": 40,
+      "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Espace cartes — ordinateur",
+      "label": "Espace entre cartes — ordinateur",
       "default": 12
     },
 
@@ -678,8 +936,14 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Espace cartes — mobile",
+      "label": "Espace entre cartes — mobile",
       "default": 8
+    },
+
+
+    {
+      "type": "header",
+      "content": "Dimensions section"
     },
 
     {
@@ -689,21 +953,8 @@
       "max": 1600,
       "step": 20,
       "unit": "px",
-      "label": "Largeur maximale section",
+      "label": "Largeur maximale",
       "default": 1000
-    },
-
-
-    {
-      "type": "header",
-      "content": "Fond et espaces"
-    },
-
-    {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Couleur fond section",
-      "default": "#FFFFFF"
     },
 
     {
@@ -725,29 +976,42 @@
       "step": 1,
       "unit": "px",
       "label": "Marges côtés — mobile",
-      "default": 24
+      "default": 22
+    },
+
+
+    {
+      "type": "header",
+      "content": "Fond et espaces"
+    },
+
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Couleur du fond",
+      "default": "#FFFFFF"
     },
 
     {
       "type": "range",
-      "id": "padding_top",
+      "id": "padding_top_desktop",
       "min": 0,
       "max": 140,
       "step": 5,
       "unit": "px",
       "label": "Espace haut — ordinateur",
-      "default": 55
+      "default": 50
     },
 
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "padding_bottom_desktop",
       "min": 0,
       "max": 140,
       "step": 5,
       "unit": "px",
       "label": "Espace bas — ordinateur",
-      "default": 55
+      "default": 50
     },
 
     {
@@ -774,12 +1038,11 @@
 
   ],
 
+
   "presets": [
-
     {
-      "name": "Vu sur — Presse"
+      "name": "Vu sur"
     }
-
   ]
 
 }
