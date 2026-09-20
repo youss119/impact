@@ -13,18 +13,6 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "blocks": {
-        "message": {
-          "type": "message",
-          "settings": {
-            "text": "Announce something here",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "message"
-      ],
       "settings": {
         "enable_sticky": false,
         "autoplay": false,
