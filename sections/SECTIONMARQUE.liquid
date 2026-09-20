@@ -1,0 +1,425 @@
+{% style %}
+  #vu-sur-{{ section.id }} {
+    background: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #vu-sur-{{ section.id }} .vu-sur__inner {
+    width: min(
+      calc(100% - ({{ section.settings.mobile_side_padding }}px * 2)),
+      {{ section.settings.max_width }}px
+    );
+    margin: 0 auto;
+  }
+
+  #vu-sur-{{ section.id }} .vu-sur__title {
+    margin: 0 0 {{ section.settings.title_bottom }}px;
+    text-align: center;
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_desktop }}px;
+    line-height: 1;
+    font-weight: {{ section.settings.title_weight }};
+    letter-spacing: {{ section.settings.title_spacing | divided_by: 10.0 }}px;
+  }
+
+  #vu-sur-{{ section.id }} .vu-sur__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    gap: {{ section.settings.gap }}px;
+    align-items: stretch;
+  }
+
+  #vu-sur-{{ section.id }} .vu-sur__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    aspect-ratio: {{ section.settings.card_ratio_width }} / {{ section.settings.card_ratio_height }};
+    background: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+    padding: {{ section.settings.card_padding }}px;
+  }
+
+  #vu-sur-{{ section.id }} .vu-sur__logo {
+    display: block;
+    width: auto;
+    max-width: {{ section.settings.logo_width }}%;
+    max-height: {{ section.settings.logo_height }}%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    #vu-sur-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    #vu-sur-{{ section.id }} .vu-sur__title {
+      font-size: {{ section.settings.title_size_mobile }}px;
+      margin-bottom: {{ section.settings.title_bottom_mobile }}px;
+    }
+
+    #vu-sur-{{ section.id }} .vu-sur__grid {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, minmax(0, 1fr));
+      gap: {{ section.settings.gap_mobile }}px;
+    }
+
+    #vu-sur-{{ section.id }} .vu-sur__card {
+      padding: {{ section.settings.card_padding_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<section id="vu-sur-{{ section.id }}">
+  <div class="vu-sur__inner">
+
+    {% if section.settings.title != blank %}
+      <h2 class="vu-sur__title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div class="vu-sur__grid">
+
+      <div class="vu-sur__card">
+        <img
+          class="vu-sur__logo"
+          src="https://averaparis.com/cdn/shop/files/f3bd8e7f-8ae4-49fa-b9eb-defd662e1cca.webp?v=1787151149&width=1000"
+          alt="Vogue"
+          loading="lazy"
+          decoding="async"
+          width="1000"
+          height="600"
+        >
+      </div>
+
+      <div class="vu-sur__card">
+        <img
+          class="vu-sur__logo"
+          src="https://averaparis.com/cdn/shop/files/cfa4a636-7de1-42eb-8553-4c72eecae22f.webp?v=1787151149&width=1000"
+          alt="Voici"
+          loading="lazy"
+          decoding="async"
+          width="1000"
+          height="600"
+        >
+      </div>
+
+      <div class="vu-sur__card">
+        <img
+          class="vu-sur__logo"
+          src="https://averaparis.com/cdn/shop/files/e525f5e1-2ac0-4ad3-b8ce-f2a580da9271.png?v=1787151501&width=800"
+          alt="Marie Claire"
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="800"
+        >
+      </div>
+
+      <div class="vu-sur__card">
+        <img
+          class="vu-sur__logo"
+          src="https://averaparis.com/cdn/shop/files/Cosmopolitan-Emblem.png?v=1787151478&width=1600"
+          alt="Cosmopolitan"
+          loading="lazy"
+          decoding="async"
+          width="1600"
+          height="900"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vu sur",
+  "tag": "section",
+  "class": "section-vu-sur",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Titre"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "VU SUR"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Couleur du titre",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 18,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille titre ordinateur",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 18,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille titre mobile",
+      "default": 29
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Épaisseur du titre",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Fin" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Moyen" },
+        { "value": "600", "label": "Semi-gras" },
+        { "value": "700", "label": "Gras" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": -10,
+      "max": 30,
+      "step": 1,
+      "label": "Espacement lettres",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Espace sous titre — ordinateur",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "title_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Espace sous titre — mobile",
+      "default": 32
+    },
+
+    {
+      "type": "header",
+      "content": "Cartes"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Couleur des cartes",
+      "default": "#FFF2D9"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Arrondi des cartes",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_ratio_width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Ratio largeur carte",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_ratio_height",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Ratio hauteur carte",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge interne carte — ordinateur",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge interne carte — mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Largeur maximale des logos",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Hauteur maximale des logos",
+      "default": 65
+    },
+
+    {
+      "type": "header",
+      "content": "Grille"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Colonnes ordinateur",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Colonnes mobile",
+      "default": "2",
+      "options": [
+        { "value": "1", "label": "1 colonne" },
+        { "value": "2", "label": "2 colonnes" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace entre cartes — ordinateur",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace entre cartes — mobile",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 300,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Largeur maximale section",
+      "default": 900
+    },
+
+    {
+      "type": "header",
+      "content": "Fond & espacements"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Couleur de fond",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Marge côtés",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Marge haute ordinateur",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Marge basse ordinateur",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Marge haute mobile",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Marge basse mobile",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vu sur"
+    }
+  ]
+}
+{% endschema %}
