@@ -50,6 +50,39 @@
         "background_gradient": "linear-gradient(60deg, rgba(60, 65, 68, 1), rgba(23, 29, 33, 1) 98%)"
       }
     },
+    "sectionmarque_acUee9": {
+      "type": "SECTIONMARQUE",
+      "name": "Vu sur",
+      "settings": {
+        "title": "VU SUR",
+        "title_color": "#111111",
+        "title_size_desktop": 28,
+        "title_size_mobile": 29,
+        "title_weight": "400",
+        "title_spacing": 1,
+        "title_bottom": 44,
+        "title_bottom_mobile": 32,
+        "card_bg": "#E0F5F5",
+        "card_radius": 0,
+        "card_ratio_width": 1,
+        "card_ratio_height": 1,
+        "card_padding": 32,
+        "card_padding_mobile": 14,
+        "logo_width": 100,
+        "logo_height": 100,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "gap": 14,
+        "gap_mobile": 8,
+        "max_width": 900,
+        "section_bg": "#FFFFFF",
+        "mobile_side_padding": 28,
+        "padding_top": 10,
+        "padding_bottom": 5,
+        "padding_top_mobile": 12,
+        "padding_bottom_mobile": 16
+      }
+    },
     "featured-product": {
       "type": "featured-product",
       "blocks": {
@@ -203,6 +236,7 @@
   },
   "order": [
     "slideshow",
+    "sectionmarque_acUee9",
     "featured-product",
     "faq"
   ]
