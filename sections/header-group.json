@@ -1,14 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
   "sections": {
+    "custom_liquid_abWrLF": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<style>\n  /* ===== BANNIÈRE MOBILE ===== */\n  .mobile-offer-banner {\n    width: 100%;\n    background: #1d4033;\n    color: #fff;\n    height: 92px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: Arial, Helvetica, sans-serif;\n    box-sizing: border-box;\n    padding: 0 18px;\n  }\n\n  .mobile-offer-inner {\n    width: 100%;\n    max-width: 430px;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n  }\n\n  /* Texte gauche */\n  .mobile-offer-text {\n    flex: 1;\n    min-width: 0;\n  }\n\n  .mobile-offer-title {\n    margin: 0;\n    font-size: 19px;\n    line-height: 1.05;\n    font-weight: 800;\n    letter-spacing: -0.3px;\n    white-space: nowrap;\n  }\n\n  .mobile-offer-subtitle {\n    margin-top: 5px;\n    font-size: 13px;\n    line-height: 1;\n    font-weight: 500;\n    letter-spacing: 1.2px;\n    color: rgba(255, 255, 255, 0.68);\n    white-space: nowrap;\n  }\n\n  /* Timer */\n  .mobile-offer-timer {\n    display: flex;\n    align-items: flex-start;\n    flex-shrink: 0;\n  }\n\n  .mobile-time-block {\n    width: 47px;\n    text-align: center;\n  }\n\n  .mobile-time-number {\n    display: block;\n    font-size: 23px;\n    line-height: 25px;\n    font-weight: 700;\n    letter-spacing: 1px;\n    color: #fff;\n    font-variant-numeric: tabular-nums;\n  }\n\n  .mobile-time-label {\n    display: block;\n    margin-top: 4px;\n    font-size: 10px;\n    line-height: 10px;\n    font-weight: 600;\n    letter-spacing: 1px;\n    color: rgba(255, 255, 255, 0.62);\n  }\n\n  .mobile-time-separator {\n    font-size: 21px;\n    line-height: 24px;\n    font-weight: 700;\n    padding: 0 1px;\n    color: rgba(255, 255, 255, 0.75);\n  }\n\n  /* Uniquement mobile */\n  @media screen and (min-width: 750px) {\n    .mobile-offer-banner {\n      display: none !important;\n    }\n  }\n\n  /* Petits iPhone */\n  @media screen and (max-width: 374px) {\n    .mobile-offer-banner {\n      padding: 0 11px;\n      height: 86px;\n    }\n\n    .mobile-offer-title {\n      font-size: 17px;\n    }\n\n    .mobile-offer-subtitle {\n      font-size: 11px;\n    }\n\n    .mobile-time-block {\n      width: 40px;\n    }\n\n    .mobile-time-number {\n      font-size: 20px;\n    }\n\n    .mobile-time-label {\n      font-size: 9px;\n    }\n  }\n</style>\n\n<div class=\"mobile-offer-banner\">\n  <div class=\"mobile-offer-inner\">\n\n    <div class=\"mobile-offer-text\">\n      <div class=\"mobile-offer-title\">OFFRE DE RENTRÉE</div>\n      <div class=\"mobile-offer-subtitle\">40% de réduction</div>\n    </div>\n\n    <div class=\"mobile-offer-timer\">\n\n      <div class=\"mobile-time-block\">\n        <span class=\"mobile-time-number\" id=\"offer-hours\">07</span>\n        <span class=\"mobile-time-label\">HRS</span>\n      </div>\n\n      <span class=\"mobile-time-separator\">:</span>\n\n      <div class=\"mobile-time-block\">\n        <span class=\"mobile-time-number\" id=\"offer-minutes\">07</span>\n        <span class=\"mobile-time-label\">MIN</span>\n      </div>\n\n      <span class=\"mobile-time-separator\">:</span>\n\n      <div class=\"mobile-time-block\">\n        <span class=\"mobile-time-number\" id=\"offer-seconds\">21</span>\n        <span class=\"mobile-time-label\">SEC</span>\n      </div>\n\n    </div>\n\n  </div>\n</div>\n\n<script>\n(function () {\n\n  /*\n    TIMER DE DÉPART\n    7 heures + 7 minutes + 21 secondes.\n\n    IMPORTANT :\n    aucune sauvegarde en cookie / localStorage.\n    Donc CHAQUE ACTUALISATION remet le timer à 07:07:21.\n  */\n\n  let remainingSeconds = (7 * 60 * 60) + (7 * 60) + 21;\n\n  const hoursElement = document.getElementById('offer-hours');\n  const minutesElement = document.getElementById('offer-minutes');\n  const secondsElement = document.getElementById('offer-seconds');\n\n  if (!hoursElement || !minutesElement || !secondsElement) return;\n\n  function formatNumber(number) {\n    return String(number).padStart(2, '0');\n  }\n\n  function updateTimer() {\n\n    const hours = Math.floor(remainingSeconds / 3600);\n    const minutes = Math.floor((remainingSeconds % 3600) / 60);\n    const seconds = remainingSeconds % 60;\n\n    hoursElement.textContent = formatNumber(hours);\n    minutesElement.textContent = formatNumber(minutes);\n    secondsElement.textContent = formatNumber(seconds);\n  }\n\n  updateTimer();\n\n  const countdown = setInterval(function () {\n\n    if (remainingSeconds <= 0) {\n      clearInterval(countdown);\n      remainingSeconds = 0;\n      updateTimer();\n      return;\n    }\n\n    remainingSeconds--;\n    updateTimer();\n\n  }, 1000);\n\n})();\n</script>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
         "message": {
           "type": "message",
           "settings": {
-            "text": "Announce something here"
+            "text": "Announce something here",
+            "url": ""
           }
         }
       },
@@ -17,10 +40,13 @@
       ],
       "settings": {
         "enable_sticky": false,
+        "autoplay": false,
+        "cycle_speed": 6,
         "text_size": "text-xs",
         "navigation_mode": "scrolling",
         "scrolling_speed": 10,
         "background": "#1a1a1a",
+        "background_gradient": "",
         "text_color": "#ffffff"
       }
     },
@@ -33,10 +59,14 @@
         "logo_max_width": 120,
         "logo_mobile_max_width": 100,
         "menu": "main-menu",
+        "sidebar_menu": "",
+        "secondary_menu": "",
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "logo_left_navigation_center",
         "show_social_media": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
         "show_country_flag": true,
         "show_country_name": false,
         "transparent_header_text_color": "#ffffff",
@@ -47,6 +77,7 @@
     }
   },
   "order": [
+    "custom_liquid_abWrLF",
     "announcement-bar",
     "header"
   ]
