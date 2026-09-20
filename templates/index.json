@@ -63,7 +63,7 @@
         "card_bg": "#e2f1f1",
         "card_radius": 0,
         "card_padding_desktop": 24,
-        "card_padding_mobile": 14,
+        "card_padding_mobile": 6,
         "columns_desktop": 4,
         "columns_mobile": "2",
         "gap_desktop": 12,
