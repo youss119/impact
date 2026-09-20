@@ -72,8 +72,8 @@
         "side_padding_desktop": 30,
         "side_padding_mobile": 24,
         "section_bg": "#ffffff",
-        "padding_top_mobile": 12,
-        "padding_bottom_mobile": 16
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
       }
     },
     "featured-product": {
