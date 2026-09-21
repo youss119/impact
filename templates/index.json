@@ -207,6 +207,16 @@
             "verified": true
           }
         },
+        "review_dDpXYn": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/2-month-difference-i-not-only-quit-smoking-but-i-quit-v0-ndtpu4on1nn61.webp",
+            "review": "2 mois sans cigarette. J’ai arrêté de fumer, j’ai recommencé à prendre soin de moi et honnêtement je ne me reconnais presque plus. Frezze m’a aidée à remplacer ce geste que j’avais depuis des années. Je me sens plus fraîche, plus énergique, je me trouve plus belle et surtout beaucoup plus libre. Deux mois seulement… et pourtant quelle différence.",
+            "name": "Client",
+            "date": "Il y a 2 semaines",
+            "verified": true
+          }
+        },
         "review_EgkaeJ": {
           "type": "review",
           "settings": {
@@ -231,6 +241,7 @@
       "block_order": [
         "review_WjDBAB",
         "review_iEGDah",
+        "review_dDpXYn",
         "review_EgkaeJ",
         "review_RxBMC8"
       ],
