@@ -1,0 +1,782 @@
+{% style %}
+
+#frezze-how-{{ section.id }} {
+  background: {{ section.settings.background }};
+  color: {{ section.settings.text_color }};
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+}
+
+#frezze-how-{{ section.id }} .fh-wrap {
+  width: min(
+    calc(100% - {{ section.settings.side_padding_desktop | times: 2 }}px),
+    {{ section.settings.max_width }}px
+  );
+  margin: 0 auto;
+}
+
+
+/* ==============================
+   TITRE
+   ============================== */
+
+#frezze-how-{{ section.id }} .fh-heading {
+  margin: 0 0 7px;
+
+  font-size: {{ section.settings.title_size_desktop }}px;
+  line-height: 1.08;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+
+  color: {{ section.settings.text_color }};
+}
+
+#frezze-how-{{ section.id }} .fh-intro {
+  max-width: 620px;
+
+  margin: 0 0 {{ section.settings.heading_gap }}px;
+
+  font-size: {{ section.settings.intro_size_desktop }}px;
+  line-height: 1.45;
+
+  color: {{ section.settings.muted_color }};
+}
+
+
+/* ==============================
+   GRILLE
+   ============================== */
+
+#frezze-how-{{ section.id }} .fh-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  column-gap: {{ section.settings.column_gap_desktop }}px;
+  row-gap: {{ section.settings.row_gap_desktop }}px;
+}
+
+
+/* ==============================
+   ÉTAPE
+   ============================== */
+
+#frezze-how-{{ section.id }} .fh-step {
+  min-width: 0;
+}
+
+#frezze-how-{{ section.id }} .fh-image-wrap {
+  width: {{ section.settings.image_size_desktop }}px;
+  height: {{ section.settings.image_size_desktop }}px;
+
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+#frezze-how-{{ section.id }} .fh-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+#frezze-how-{{ section.id }} .fh-step-title {
+  margin: 0 0 5px;
+
+  font-size: {{ section.settings.step_title_size_desktop }}px;
+  line-height: 1.1;
+  font-weight: 750;
+
+  color: {{ section.settings.text_color }};
+}
+
+#frezze-how-{{ section.id }} .fh-step-text {
+  margin: 0;
+
+  max-width: 220px;
+
+  font-size: {{ section.settings.step_text_size_desktop }}px;
+  line-height: 1.42;
+
+  color: {{ section.settings.muted_color }};
+}
+
+
+/* ==============================
+   TITRE DU BLOC SUIVANT
+   ============================== */
+
+#frezze-how-{{ section.id }} .fh-bottom-title {
+  margin:
+    {{ section.settings.bottom_title_margin }}px
+    0
+    0;
+
+  text-align: center;
+
+  font-size: {{ section.settings.bottom_title_size }}px;
+  line-height: 1.08;
+  font-weight: 750;
+
+  color: {{ section.settings.text_color }};
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media screen and (max-width: 749px) {
+
+  #frezze-how-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  #frezze-how-{{ section.id }} .fh-wrap {
+    width: calc(
+      100% - {{ section.settings.side_padding_mobile | times: 2 }}px
+    );
+  }
+
+  #frezze-how-{{ section.id }} .fh-heading {
+    font-size: {{ section.settings.title_size_mobile }}px;
+  }
+
+  #frezze-how-{{ section.id }} .fh-intro {
+    margin-bottom: {{ section.settings.heading_gap_mobile }}px;
+
+    font-size: {{ section.settings.intro_size_mobile }}px;
+    line-height: 1.42;
+  }
+
+  /* EXACTEMENT 2 × 2 */
+
+  #frezze-how-{{ section.id }} .fh-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: {{ section.settings.column_gap_mobile }}px;
+    row-gap: {{ section.settings.row_gap_mobile }}px;
+  }
+
+  #frezze-how-{{ section.id }} .fh-image-wrap {
+    width: {{ section.settings.image_size_mobile }}px;
+    height: {{ section.settings.image_size_mobile }}px;
+
+    margin-bottom: 7px;
+  }
+
+  #frezze-how-{{ section.id }} .fh-step-title {
+    margin-bottom: 4px;
+
+    font-size: {{ section.settings.step_title_size_mobile }}px;
+  }
+
+  #frezze-how-{{ section.id }} .fh-step-text {
+    max-width: 155px;
+
+    font-size: {{ section.settings.step_text_size_mobile }}px;
+    line-height: 1.36;
+  }
+
+  #frezze-how-{{ section.id }} .fh-bottom-title {
+    margin-top: {{ section.settings.bottom_title_margin_mobile }}px;
+
+    font-size: {{ section.settings.bottom_title_size_mobile }}px;
+  }
+
+}
+
+{% endstyle %}
+
+
+<section id="frezze-how-{{ section.id }}">
+
+  <div class="fh-wrap">
+
+
+    {% if section.settings.heading != blank %}
+
+      <h2 class="fh-heading">
+        {{ section.settings.heading }}
+      </h2>
+
+    {% endif %}
+
+
+    {% if section.settings.intro != blank %}
+
+      <p class="fh-intro">
+        {{ section.settings.intro }}
+      </p>
+
+    {% endif %}
+
+
+
+    <div class="fh-grid">
+
+      {% for block in section.blocks %}
+
+        <div
+          class="fh-step"
+          {{ block.shopify_attributes }}
+        >
+
+
+          <div class="fh-image-wrap">
+
+            {% if block.settings.custom_image != blank %}
+
+              <img
+                class="fh-image"
+                src="{{ block.settings.custom_image | image_url: width: 600 }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+
+            {% elsif block.settings.image_url != blank %}
+
+              <img
+                class="fh-image"
+                src="{{ block.settings.image_url }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+
+            {% endif %}
+
+          </div>
+
+
+          {% if block.settings.title != blank %}
+
+            <h3 class="fh-step-title">
+              {{ block.settings.title }}
+            </h3>
+
+          {% endif %}
+
+
+          {% if block.settings.text != blank %}
+
+            <p class="fh-step-text">
+              {{ block.settings.text }}
+            </p>
+
+          {% endif %}
+
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+
+
+    {% if section.settings.bottom_title != blank %}
+
+      <h2 class="fh-bottom-title">
+        {{ section.settings.bottom_title }}
+      </h2>
+
+    {% endif %}
+
+
+  </div>
+
+</section>
+
+
+{% schema %}
+{
+  "name": "Comment utiliser Frezze",
+
+  "tag": "section",
+
+  "class": "section-frezze-how",
+
+  "settings": [
+
+
+    {
+      "type": "header",
+      "content": "Texte"
+    },
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Comment l’utiliser"
+    },
+
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Petit texte",
+      "default": "Pas de batterie, pas de bouton. Insérez l’arôme, réglez le tirage et respirez."
+    },
+
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 20,
+      "max": 44,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre — ordinateur",
+      "default": 30
+    },
+
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 18,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre — mobile",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "intro_size_desktop",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Sous-texte — ordinateur",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "intro_size_mobile",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Sous-texte — mobile",
+      "default": 13
+    },
+
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace sous intro — ordinateur",
+      "default": 22
+    },
+
+    {
+      "type": "range",
+      "id": "heading_gap_mobile",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace sous intro — mobile",
+      "default": 17
+    },
+
+
+    {
+      "type": "header",
+      "content": "Illustrations"
+    },
+
+    {
+      "type": "range",
+      "id": "image_size_desktop",
+      "min": 80,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "label": "Taille images — ordinateur",
+      "default": 140
+    },
+
+    {
+      "type": "range",
+      "id": "image_size_mobile",
+      "min": 70,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "label": "Taille images — mobile",
+      "default": 105
+    },
+
+
+    {
+      "type": "header",
+      "content": "Étapes"
+    },
+
+    {
+      "type": "range",
+      "id": "step_title_size_desktop",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre étape — ordinateur",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "step_title_size_mobile",
+      "min": 13,
+      "max": 21,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre étape — mobile",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "step_text_size_desktop",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Texte étape — ordinateur",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "step_text_size_mobile",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Texte étape — mobile",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "column_gap_desktop",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace horizontal — ordinateur",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "row_gap_desktop",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace vertical — ordinateur",
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace horizontal — mobile",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "row_gap_mobile",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace vertical — mobile",
+      "default": 17
+    },
+
+
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fond",
+      "default": "#FBFDFB"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#181818"
+    },
+
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Petit texte",
+      "default": "#575757"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Dimensions section"
+    },
+
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Largeur max",
+      "default": 1000
+    },
+
+    {
+      "type": "range",
+      "id": "side_padding_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Marges côtés — ordinateur",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "side_padding_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Marges côtés — mobile",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — ordinateur",
+      "default": 32
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — ordinateur",
+      "default": 26
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — mobile",
+      "default": 22
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — mobile",
+      "default": 18
+    },
+
+
+    {
+      "type": "header",
+      "content": "Titre suivant"
+    },
+
+    {
+      "type": "text",
+      "id": "bottom_title",
+      "label": "Titre sous les étapes",
+      "default": "Tout ce qu’il vous faut pour commencer"
+    },
+
+    {
+      "type": "range",
+      "id": "bottom_title_size",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — ordinateur",
+      "default": 26
+    },
+
+    {
+      "type": "range",
+      "id": "bottom_title_size_mobile",
+      "min": 17,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — mobile",
+      "default": 22
+    },
+
+    {
+      "type": "range",
+      "id": "bottom_title_margin",
+      "min": 10,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace avant titre — ordinateur",
+      "default": 38
+    },
+
+    {
+      "type": "range",
+      "id": "bottom_title_margin_mobile",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace avant titre — mobile",
+      "default": 27
+    }
+
+  ],
+
+
+  "blocks": [
+
+    {
+      "type": "step",
+      "name": "Étape",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Remplacer l’image"
+        },
+
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "URL image"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Étape 1"
+        },
+
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte",
+          "default": "Insérez votre recharge aromatique."
+        }
+
+      ]
+
+    }
+
+  ],
+
+
+  "presets": [
+
+    {
+      "name": "Comment utiliser Frezze",
+
+      "blocks": [
+
+        {
+          "type": "step",
+          "settings": {
+            "title": "Étape 1",
+            "text": "Insérez la recharge aromatique.",
+            "image_url": "https://feelhum.com/cdn/shop/files/27_90b9b6c8-7dd3-4e16-b948-9382cb3e85b6.png?v=1750702041&width=1000"
+          }
+        },
+
+        {
+          "type": "step",
+          "settings": {
+            "title": "Étape 2",
+            "text": "Réglez le débit d’air selon vos préférences.",
+            "image_url": "https://feelhum.com/cdn/shop/files/24_bedcf893-09dd-42a3-a6da-86fb572197f7.png?v=1750702060&width=1000"
+          }
+        },
+
+        {
+          "type": "step",
+          "settings": {
+            "title": "Étape 3",
+            "text": "Inspirez lentement et profitez de l’arôme.",
+            "image_url": "https://feelhum.com/cdn/shop/files/25_ea9b7baf-d7a9-49b3-bf47-8ea4f0a9ef6a.png?v=1750702079&width=1000"
+          }
+        },
+
+        {
+          "type": "step",
+          "settings": {
+            "title": "Étape 4",
+            "text": "Quand l’arôme faiblit, remplacez la recharge.",
+            "image_url": "https://feelhum.com/cdn/shop/files/26_adf7d19c-1603-4fc6-8843-01b9fcb5c9af.png?v=1750702098&width=1000"
+          }
+        }
+
+      ]
+
+    }
+
+  ]
+
+}
+
+{% endschema %}
