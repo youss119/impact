@@ -317,19 +317,6 @@
       "name": "Image pleine largeur",
       "settings": {}
     },
-    "custom_liquid_fFUAe4": {
-      "type": "custom-liquid",
-      "name": "Custom Liquid",
-      "settings": {
-        "full_width": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "liquid": "<style>\n  .frezze-separator-wrap {\n    margin: 0;\n    padding: 0 16px;\n  }\n\n  .frezze-separator {\n    width: 100%;\n    height: 2px;\n    background: #223a2d;\n    margin: 0;\n    padding: 0;\n    border-radius: 999px;\n  }\n\n  @media screen and (max-width: 749px) {\n    .frezze-separator-wrap {\n      padding: 0 14px;\n    }\n  }\n</style>\n\n<div class=\"frezze-separator-wrap\">\n  <div class=\"frezze-separator\"></div>\n</div>",
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
-      }
-    },
     "featured-product": {
       "type": "featured-product",
       "blocks": {
@@ -455,7 +442,6 @@
     "bulletpoint_jWAErg",
     "avistruspilot_xffDzw",
     "blocks_YDeLir",
-    "custom_liquid_fFUAe4",
     "featured-product",
     "faq"
   ]
