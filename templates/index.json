@@ -317,27 +317,18 @@
       "name": "Image pleine largeur",
       "settings": {}
     },
-    "17900149005bb8af81": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_0941439_XhLB7H": {
-          "type": "ai_gen_block_0941439",
-          "settings": {
-            "separator_style": "gradient",
-            "color": "#1a1a1a",
-            "thickness": 2,
-            "vertical_spacing": 20,
-            "dash_length": 12,
-            "dot_spacing": 14,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_0941439_XhLB7H"
-      ],
-      "settings": {}
+    "custom_liquid_fFUAe4": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<style>\n  .frezze-separator-wrap {\n    margin: 0;\n    padding: 0 16px;\n  }\n\n  .frezze-separator {\n    width: 100%;\n    height: 2px;\n    background: #223a2d;\n    margin: 0;\n    padding: 0;\n    border-radius: 999px;\n  }\n\n  @media screen and (max-width: 749px) {\n    .frezze-separator-wrap {\n      padding: 0 14px;\n    }\n  }\n</style>\n\n<div class=\"frezze-separator-wrap\">\n  <div class=\"frezze-separator\"></div>\n</div>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
     },
     "featured-product": {
       "type": "featured-product",
@@ -464,7 +455,7 @@
     "bulletpoint_jWAErg",
     "avistruspilot_xffDzw",
     "blocks_YDeLir",
-    "17900149005bb8af81",
+    "custom_liquid_fFUAe4",
     "featured-product",
     "faq"
   ]
