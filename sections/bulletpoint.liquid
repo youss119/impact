@@ -5,6 +5,10 @@
 
 {% style %}
 
+/* =========================================================
+   FREZZE — COMPARAISON POUMONS
+   ========================================================= */
+
 #frezze-compare-{{ section.id }} {
   background: {{ section.settings.section_bg }};
   padding-top: {{ section.settings.padding_top_desktop }}px;
@@ -20,14 +24,14 @@
 }
 
 
-/* =========================
+/* =========================================================
    IMAGE
-   ========================= */
+   ========================================================= */
 
-#frezze-compare-{{ section.id }} .fc-media {
+#frezze-compare-{{ section.id }} .fc-image-wrap {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 #frezze-compare-{{ section.id }} .fc-image-window {
@@ -35,7 +39,6 @@
 
   width: 100%;
   max-width: {{ section.settings.image_max_width_desktop }}px;
-
   height: {{ section.settings.image_height_desktop }}px;
 
   overflow: hidden;
@@ -61,122 +64,120 @@
     )
     scale({{ section.settings.image_scale_desktop | divided_by: 100.0 }});
 
-  transform-origin: center;
+  transform-origin: center center;
 }
 
 #frezze-compare-{{ section.id }} .fc-placeholder {
   width: 100%;
   height: 100%;
-  background: #f4f4f4;
+
+  background: #f5f5f5;
 }
 
 
-/* =========================
+/* =========================================================
    CARTES
-   ========================= */
+   ========================================================= */
 
 #frezze-compare-{{ section.id }} .fc-cards {
-  position: relative;
-  z-index: 2;
-
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: {{ section.settings.cards_gap_desktop }}px;
 
-  margin-top: -{{ section.settings.cards_overlap_desktop }}px;
+  margin-top: {{ section.settings.cards_margin_top_desktop }}px;
 }
 
 #frezze-compare-{{ section.id }} .fc-card {
+  min-width: 0;
+
   box-sizing: border-box;
 
-  padding: {{ section.settings.card_padding_desktop }}px;
+  padding:
+    {{ section.settings.card_padding_vertical_desktop }}px
+    {{ section.settings.card_padding_horizontal_desktop }}px;
 
   border-radius: {{ section.settings.card_radius }}px;
 
-  {% if section.settings.show_border %}
-    border: 1px solid {{ section.settings.border_color }};
-  {% endif %}
-
-  {% if section.settings.show_shadow %}
-    box-shadow: 0 8px 24px rgba(0,0,0,.06);
-  {% endif %}
+  overflow: hidden;
 }
 
-#frezze-compare-{{ section.id }} .fc-card--bad {
+#frezze-compare-{{ section.id }} .fc-card--left {
   background: {{ section.settings.left_card_bg }};
 }
 
-#frezze-compare-{{ section.id }} .fc-card--good {
+#frezze-compare-{{ section.id }} .fc-card--right {
   background: {{ section.settings.right_card_bg }};
 }
 
 
-/* TITRES */
-
-#frezze-compare-{{ section.id }} .fc-title {
-  margin: 0 0 {{ section.settings.title_bottom_spacing }}px;
-
-  color: {{ section.settings.title_color }};
-
-  font-size: {{ section.settings.title_size_desktop }}px;
-  line-height: 1.12;
-
-  font-weight: 700;
-}
-
-
-/* LISTES */
+/* =========================================================
+   LISTES
+   ========================================================= */
 
 #frezze-compare-{{ section.id }} .fc-list {
   list-style: none;
 
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 #frezze-compare-{{ section.id }} .fc-list li {
   display: flex;
+
   align-items: flex-start;
 
-  gap: 9px;
+  gap: {{ section.settings.icon_gap_desktop }}px;
+
+  margin: 0;
 
   color: {{ section.settings.text_color }};
 
   font-size: {{ section.settings.text_size_desktop }}px;
-  line-height: 1.35;
+  line-height: 1.25;
+
+  font-weight: {{ section.settings.text_weight }};
 }
 
 #frezze-compare-{{ section.id }} .fc-list li + li {
-  margin-top: {{ section.settings.bullet_spacing }}px;
+  margin-top: {{ section.settings.bullet_spacing_desktop }}px;
 }
 
 
-/* BULLETS */
+/* =========================================================
+   BULLETS
+   ========================================================= */
 
-#frezze-compare-{{ section.id }} .fc-bullet {
+#frezze-compare-{{ section.id }} .fc-icon {
   flex: 0 0 auto;
 
-  width: 18px;
+  display: inline-flex;
 
-  margin-top: 1px;
+  width: {{ section.settings.icon_width_desktop }}px;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: {{ section.settings.icon_size_desktop }}px;
 
   font-weight: 800;
-  line-height: 1.2;
+
+  line-height: 1.15;
 }
 
-#frezze-compare-{{ section.id }} .fc-card--bad .fc-bullet {
+#frezze-compare-{{ section.id }} .fc-card--left .fc-icon {
   color: {{ section.settings.left_bullet_color }};
 }
 
-#frezze-compare-{{ section.id }} .fc-card--good .fc-bullet {
+#frezze-compare-{{ section.id }} .fc-card--right .fc-icon {
   color: {{ section.settings.right_bullet_color }};
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE
-   ========================= */
+   ========================================================= */
 
 @media screen and (max-width: 749px) {
 
@@ -190,6 +191,9 @@
       100% - {{ section.settings.side_padding_mobile | times: 2 }}px
     );
   }
+
+
+  /* IMAGE */
 
   #frezze-compare-{{ section.id }} .fc-image-window {
     max-width: 100%;
@@ -206,28 +210,48 @@
       scale({{ section.settings.image_scale_mobile | divided_by: 100.0 }});
   }
 
+
+  /* LES 2 CARTES RESTENT CÔTE À CÔTE */
+
   #frezze-compare-{{ section.id }} .fc-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: {{ section.settings.cards_gap_mobile }}px;
 
-    margin-top: -{{ section.settings.cards_overlap_mobile }}px;
+    margin-top: {{ section.settings.cards_margin_top_mobile }}px;
   }
+
+
+  /* CARTES COMPACTES */
 
   #frezze-compare-{{ section.id }} .fc-card {
-    padding: {{ section.settings.card_padding_mobile }}px;
+    padding:
+      {{ section.settings.card_padding_vertical_mobile }}px
+      {{ section.settings.card_padding_horizontal_mobile }}px;
   }
 
-  #frezze-compare-{{ section.id }} .fc-title {
-    font-size: {{ section.settings.title_size_mobile }}px;
 
-    margin-bottom: {{ section.settings.title_bottom_spacing_mobile }}px;
-  }
+  /* TEXTE */
 
   #frezze-compare-{{ section.id }} .fc-list li {
+    gap: {{ section.settings.icon_gap_mobile }}px;
+
     font-size: {{ section.settings.text_size_mobile }}px;
 
-    gap: 8px;
+    line-height: 1.22;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-list li + li {
+    margin-top: {{ section.settings.bullet_spacing_mobile }}px;
+  }
+
+
+  /* ICONES */
+
+  #frezze-compare-{{ section.id }} .fc-icon {
+    width: {{ section.settings.icon_width_mobile }}px;
+
+    font-size: {{ section.settings.icon_size_mobile }}px;
   }
 
 }
@@ -243,7 +267,7 @@
 
     <!-- IMAGE -->
 
-    <div class="fc-media">
+    <div class="fc-image-wrap">
 
       <div class="fc-image-window">
 
@@ -277,18 +301,9 @@
     <div class="fc-cards">
 
 
-      <!-- TABAC -->
+      <!-- GAUCHE : TABAC -->
 
-      <div class="fc-card fc-card--bad">
-
-        {% if section.settings.left_title != blank %}
-
-          <h3 class="fc-title">
-            {{ section.settings.left_title }}
-          </h3>
-
-        {% endif %}
-
+      <div class="fc-card fc-card--left">
 
         <ul class="fc-list">
 
@@ -300,7 +315,7 @@
 
               <li>
 
-                <span class="fc-bullet">
+                <span class="fc-icon">
                   {{ section.settings.left_bullet }}
                 </span>
 
@@ -320,18 +335,9 @@
 
 
 
-      <!-- FREZZE -->
+      <!-- DROITE : FREZZE -->
 
-      <div class="fc-card fc-card--good">
-
-        {% if section.settings.right_title != blank %}
-
-          <h3 class="fc-title">
-            {{ section.settings.right_title }}
-          </h3>
-
-        {% endif %}
-
+      <div class="fc-card fc-card--right">
 
         <ul class="fc-list">
 
@@ -343,7 +349,7 @@
 
               <li>
 
-                <span class="fc-bullet">
+                <span class="fc-icon">
                   {{ section.settings.right_bullet }}
                 </span>
 
@@ -389,7 +395,7 @@
     {
       "type": "image_picker",
       "id": "main_image",
-      "label": "Image des poumons"
+      "label": "Image"
     },
 
     {
@@ -406,23 +412,23 @@
     {
       "type": "range",
       "id": "image_height_desktop",
-      "min": 250,
-      "max": 850,
+      "min": 200,
+      "max": 800,
       "step": 10,
       "unit": "px",
       "label": "Hauteur image — ordinateur",
-      "default": 520
+      "default": 500
     },
 
     {
       "type": "range",
       "id": "image_height_mobile",
-      "min": 180,
-      "max": 600,
+      "min": 160,
+      "max": 500,
       "step": 10,
       "unit": "px",
       "label": "Hauteur image — mobile",
-      "default": 330
+      "default": 310
     },
 
 
@@ -450,7 +456,7 @@
       "step": 1,
       "unit": "%",
       "label": "Zoom — mobile",
-      "default": 108
+      "default": 112
     },
 
 
@@ -523,54 +529,40 @@
 
     {
       "type": "header",
-      "content": "Carte tabac"
-    },
-
-    {
-      "type": "text",
-      "id": "left_title",
-      "label": "Titre",
-      "default": "Ce que le tabac peut provoquer"
+      "content": "Points gauche"
     },
 
     {
       "type": "textarea",
       "id": "left_points",
-      "label": "Points — 1 par ligne",
+      "label": "1 phrase par ligne",
       "default": "Cancer du poumon\nDécès prématuré\nAVC\nRisque d’infarctus\nDifficultés respiratoires"
     },
 
     {
       "type": "text",
       "id": "left_bullet",
-      "label": "Symbole",
+      "label": "Symbole gauche",
       "default": "•"
     },
 
 
     {
       "type": "header",
-      "content": "Carte Frezze"
-    },
-
-    {
-      "type": "text",
-      "id": "right_title",
-      "label": "Titre",
-      "default": "Avec Frezze"
+      "content": "Points droite"
     },
 
     {
       "type": "textarea",
       "id": "right_points",
-      "label": "Points — 1 par ligne",
+      "label": "1 phrase par ligne",
       "default": "100 % arômes naturels\nVérifié en laboratoire\n0 nicotine · 0 tabac\nSans fumée · sans vapeur\nUtilisation illimitée"
     },
 
     {
       "type": "text",
       "id": "right_bullet",
-      "label": "Symbole",
+      "label": "Symbole droite",
       "default": "✓"
     },
 
@@ -590,203 +582,63 @@
     {
       "type": "color",
       "id": "left_card_bg",
-      "label": "Fond carte tabac",
+      "label": "Carte gauche",
       "default": "#F8E4E4"
     },
 
     {
       "type": "color",
       "id": "right_card_bg",
-      "label": "Fond carte Frezze",
+      "label": "Carte droite",
       "default": "#E2F1F1"
     },
 
     {
       "type": "color",
       "id": "left_bullet_color",
-      "label": "Bullet tabac",
-      "default": "#B95656"
+      "label": "Bullet gauche",
+      "default": "#C75B5B"
     },
 
     {
       "type": "color",
       "id": "right_bullet_color",
-      "label": "Bullet Frezze",
+      "label": "Bullet droite",
       "default": "#253A2F"
-    },
-
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Titres",
-      "default": "#111111"
     },
 
     {
       "type": "color",
       "id": "text_color",
       "label": "Texte",
-      "default": "#222222"
+      "default": "#202020"
     },
 
 
     {
       "type": "header",
-      "content": "Style cartes"
+      "content": "Cartes"
     },
 
     {
       "type": "range",
       "id": "card_radius",
       "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Arrondi",
-      "default": 18
-    },
-
-    {
-      "type": "checkbox",
-      "id": "show_border",
-      "label": "Afficher bordure",
-      "default": false
-    },
-
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Couleur bordure",
-      "default": "#E5E5E5"
-    },
-
-    {
-      "type": "checkbox",
-      "id": "show_shadow",
-      "label": "Afficher ombre légère",
-      "default": false
-    },
-
-
-    {
-      "type": "range",
-      "id": "card_padding_desktop",
-      "min": 10,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Padding cartes — ordinateur",
-      "default": 18
-    },
-
-    {
-      "type": "range",
-      "id": "card_padding_mobile",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Padding cartes — mobile",
-      "default": 15
-    },
-
-
-    {
-      "type": "header",
-      "content": "Texte"
-    },
-
-    {
-      "type": "range",
-      "id": "title_size_desktop",
-      "min": 16,
       "max": 32,
       "step": 1,
       "unit": "px",
-      "label": "Titre cartes — ordinateur",
-      "default": 21
-    },
-
-    {
-      "type": "range",
-      "id": "title_size_mobile",
-      "min": 15,
-      "max": 26,
-      "step": 1,
-      "unit": "px",
-      "label": "Titre cartes — mobile",
-      "default": 18
-    },
-
-    {
-      "type": "range",
-      "id": "text_size_desktop",
-      "min": 13,
-      "max": 22,
-      "step": 1,
-      "unit": "px",
-      "label": "Texte — ordinateur",
-      "default": 16
-    },
-
-    {
-      "type": "range",
-      "id": "text_size_mobile",
-      "min": 12,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Texte — mobile",
+      "label": "Arrondi",
       "default": 14
-    },
-
-    {
-      "type": "range",
-      "id": "title_bottom_spacing",
-      "min": 4,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Espace sous titre — ordinateur",
-      "default": 10
-    },
-
-    {
-      "type": "range",
-      "id": "title_bottom_spacing_mobile",
-      "min": 4,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Espace sous titre — mobile",
-      "default": 8
-    },
-
-    {
-      "type": "range",
-      "id": "bullet_spacing",
-      "min": 2,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "label": "Espace entre bullets",
-      "default": 7
-    },
-
-
-    {
-      "type": "header",
-      "content": "Espacement cartes"
     },
 
     {
       "type": "range",
       "id": "cards_gap_desktop",
       "min": 0,
-      "max": 40,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Écart cartes — ordinateur",
+      "label": "Espace cartes — ordinateur",
       "default": 12
     },
 
@@ -794,33 +646,231 @@
       "type": "range",
       "id": "cards_gap_mobile",
       "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace cartes — mobile",
+      "default": 7
+    },
+
+    {
+      "type": "range",
+      "id": "cards_margin_top_desktop",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace image/cartes — ordinateur",
+      "default": 10
+    },
+
+    {
+      "type": "range",
+      "id": "cards_margin_top_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace image/cartes — mobile",
+      "default": 6
+    },
+
+
+    {
+      "type": "header",
+      "content": "Padding cartes"
+    },
+
+    {
+      "type": "range",
+      "id": "card_padding_vertical_desktop",
+      "min": 6,
       "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Écart cartes — mobile",
-      "default": 8
+      "label": "Vertical — ordinateur",
+      "default": 14
     },
 
     {
       "type": "range",
-      "id": "cards_overlap_desktop",
-      "min": 0,
-      "max": 100,
-      "step": 2,
+      "id": "card_padding_horizontal_desktop",
+      "min": 6,
+      "max": 30,
+      "step": 1,
       "unit": "px",
-      "label": "Remonter cartes sur image — ordinateur",
-      "default": 18
+      "label": "Horizontal — ordinateur",
+      "default": 15
     },
 
     {
       "type": "range",
-      "id": "cards_overlap_mobile",
-      "min": 0,
-      "max": 80,
-      "step": 2,
+      "id": "card_padding_vertical_mobile",
+      "min": 5,
+      "max": 24,
+      "step": 1,
       "unit": "px",
-      "label": "Remonter cartes sur image — mobile",
+      "label": "Vertical — mobile",
       "default": 10
+    },
+
+    {
+      "type": "range",
+      "id": "card_padding_horizontal_mobile",
+      "min": 5,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal — mobile",
+      "default": 9
+    },
+
+
+    {
+      "type": "header",
+      "content": "Texte bullets"
+    },
+
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 11,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — ordinateur",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — mobile",
+      "default": 11
+    },
+
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Épaisseur texte",
+      "default": "500",
+
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Moyen"
+        },
+        {
+          "value": "600",
+          "label": "Semi-gras"
+        },
+        {
+          "value": "700",
+          "label": "Gras"
+        }
+      ]
+    },
+
+    {
+      "type": "range",
+      "id": "bullet_spacing_desktop",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace lignes — ordinateur",
+      "default": 6
+    },
+
+    {
+      "type": "range",
+      "id": "bullet_spacing_mobile",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace lignes — mobile",
+      "default": 5
+    },
+
+
+    {
+      "type": "header",
+      "content": "Icônes"
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — ordinateur",
+      "default": 15
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille — mobile",
+      "default": 11
+    },
+
+    {
+      "type": "range",
+      "id": "icon_width_desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Largeur — ordinateur",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "icon_width_mobile",
+      "min": 8,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Largeur — mobile",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "icon_gap_desktop",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace icône/texte — ordinateur",
+      "default": 7
+    },
+
+    {
+      "type": "range",
+      "id": "icon_gap_mobile",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace icône/texte — mobile",
+      "default": 4
     },
 
 
@@ -836,8 +886,8 @@
       "max": 1500,
       "step": 20,
       "unit": "px",
-      "label": "Largeur maximale",
-      "default": 1100
+      "label": "Largeur maximum",
+      "default": 1060
     },
 
     {
@@ -847,7 +897,7 @@
       "max": 80,
       "step": 2,
       "unit": "px",
-      "label": "Marge côtés — ordinateur",
+      "label": "Marges côtés — ordinateur",
       "default": 24
     },
 
@@ -855,55 +905,55 @@
       "type": "range",
       "id": "side_padding_mobile",
       "min": 0,
-      "max": 40,
+      "max": 30,
       "step": 1,
       "unit": "px",
-      "label": "Marge côtés — mobile",
-      "default": 14
+      "label": "Marges côtés — mobile",
+      "default": 12
     },
 
     {
       "type": "range",
       "id": "padding_top_desktop",
       "min": 0,
-      "max": 120,
+      "max": 100,
       "step": 2,
       "unit": "px",
       "label": "Padding haut — ordinateur",
-      "default": 24
+      "default": 18
     },
 
     {
       "type": "range",
       "id": "padding_bottom_desktop",
       "min": 0,
-      "max": 120,
+      "max": 100,
       "step": 2,
       "unit": "px",
       "label": "Padding bas — ordinateur",
-      "default": 24
+      "default": 18
     },
 
     {
       "type": "range",
       "id": "padding_top_mobile",
       "min": 0,
-      "max": 100,
-      "step": 2,
+      "max": 80,
+      "step": 1,
       "unit": "px",
       "label": "Padding haut — mobile",
-      "default": 16
+      "default": 10
     },
 
     {
       "type": "range",
       "id": "padding_bottom_mobile",
       "min": 0,
-      "max": 100,
-      "step": 2,
+      "max": 80,
+      "step": 1,
       "unit": "px",
       "label": "Padding bas — mobile",
-      "default": 16
+      "default": 10
     }
 
   ],
