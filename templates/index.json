@@ -317,6 +317,28 @@
       "name": "Image pleine largeur",
       "settings": {}
     },
+    "17900149005bb8af81": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0941439_XhLB7H": {
+          "type": "ai_gen_block_0941439",
+          "settings": {
+            "separator_style": "gradient",
+            "color": "#1a1a1a",
+            "thickness": 2,
+            "vertical_spacing": 20,
+            "dash_length": 12,
+            "dot_spacing": 14,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0941439_XhLB7H"
+      ],
+      "settings": {}
+    },
     "featured-product": {
       "type": "featured-product",
       "blocks": {
@@ -326,21 +348,9 @@
             "liquid": "<style>\n  .frezze-proof-v3,\n  .frezze-proof-v3 * {\n    box-sizing: border-box;\n  }\n\n  .frezze-proof-v3 {\n    --fz-green: #223a2d;\n    --fz-soft: #9aaea0;\n    --fz-text: #1f1f1f;\n    --fz-bg: #ffffff;\n\n    width: 100%;\n    max-width: 100%;\n    margin: 0;\n    padding: 0;\n    background: var(--fz-bg);\n    font-family: \"Avenir Next\", Avenir, Helvetica, Arial, sans-serif;\n    color: var(--fz-text);\n  }\n\n  .frezze-proof-v3 .fz-wrap {\n    padding: 0 14px 6px;\n  }\n\n  /* Ligne étoiles */\n  .frezze-proof-v3 .fz-rating {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 6px;\n    margin: 0 0 10px 0;\n    text-align: center;\n    line-height: 1;\n  }\n\n  .frezze-proof-v3 .fz-stars {\n    color: var(--fz-green);\n    letter-spacing: 1px;\n    font-size: 14px;\n    line-height: 1;\n    white-space: nowrap;\n  }\n\n  .frezze-proof-v3 .fz-rating-text {\n    font-size: 13px;\n    line-height: 1.1;\n    color: #222633;\n    font-weight: 500;\n  }\n\n  .frezze-proof-v3 .fz-rating-text strong {\n    font-weight: 800;\n  }\n\n  /* Bandeau vert */\n  .frezze-proof-v3 .fz-social {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    background: var(--fz-green);\n    border-radius: 16px;\n    padding: 10px 12px;\n    margin-bottom: 16px;\n  }\n\n  .frezze-proof-v3 .fz-avatars {\n    position: relative;\n    width: 66px;\n    min-width: 66px;\n    height: 34px;\n  }\n\n  .frezze-proof-v3 .fz-avatar {\n    width: 34px;\n    height: 34px;\n    border-radius: 50%;\n    object-fit: cover;\n    position: absolute;\n    top: 0;\n    border: 2px solid var(--fz-green);\n    background: #d9d9d9;\n    display: block;\n  }\n\n  .frezze-proof-v3 .fz-avatar.a1 { left: 0; z-index: 3; }\n  .frezze-proof-v3 .fz-avatar.a2 { left: 16px; z-index: 2; }\n  .frezze-proof-v3 .fz-avatar.a3 { left: 32px; z-index: 1; }\n\n  .frezze-proof-v3 .fz-social-text {\n    color: #fff;\n    font-size: 12.5px;\n    line-height: 1.28;\n    margin: 0;\n  }\n\n  .frezze-proof-v3 .fz-social-text strong {\n    font-weight: 800;\n  }\n\n  /* Bloc texte */\n  .frezze-proof-v3 .fz-card {\n    background: #fff;\n    border-radius: 16px;\n    padding: 0;\n  }\n\n  .frezze-proof-v3 .fz-title {\n    margin: 0 0 14px 0;\n    color: var(--fz-green);\n    font-family: Georgia, \"Times New Roman\", serif;\n    font-size: 22px;\n    line-height: 1.02;\n    font-weight: 700;\n    letter-spacing: -0.3px;\n  }\n\n  .frezze-proof-v3 .fz-title em {\n    color: var(--fz-soft);\n    font-style: italic;\n    font-weight: 700;\n  }\n\n  .frezze-proof-v3 .fz-list {\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n  }\n\n  .frezze-proof-v3 .fz-item {\n    display: grid;\n    grid-template-columns: 34px 1fr;\n    align-items: start;\n    column-gap: 10px;\n  }\n\n  .frezze-proof-v3 .fz-check {\n    width: 26px;\n    height: 26px;\n    border-radius: 50%;\n    background: var(--fz-green);\n    color: #fff;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 15px;\n    font-weight: 800;\n    line-height: 1;\n    margin-top: 2px;\n  }\n\n  .frezze-proof-v3 .fz-copy {\n    margin: 0;\n    font-size: 13.5px;\n    line-height: 1.28;\n    color: #262626;\n  }\n\n  .frezze-proof-v3 .fz-copy strong {\n    font-weight: 800;\n  }\n\n  .frezze-proof-v3 .fz-copy .fz-sub {\n    display: block;\n    font-weight: 400;\n  }\n\n  @media screen and (max-width: 390px) {\n    .frezze-proof-v3 .fz-wrap {\n      padding: 0 12px 6px;\n    }\n\n    .frezze-proof-v3 .fz-rating-text {\n      font-size: 12.5px;\n    }\n\n    .frezze-proof-v3 .fz-stars {\n      font-size: 13px;\n    }\n\n    .frezze-proof-v3 .fz-social {\n      padding: 9px 11px;\n      gap: 9px;\n      border-radius: 15px;\n      margin-bottom: 14px;\n    }\n\n    .frezze-proof-v3 .fz-avatars {\n      width: 60px;\n      min-width: 60px;\n      height: 32px;\n    }\n\n    .frezze-proof-v3 .fz-avatar {\n      width: 32px;\n      height: 32px;\n    }\n\n    .frezze-proof-v3 .fz-avatar.a2 { left: 14px; }\n    .frezze-proof-v3 .fz-avatar.a3 { left: 28px; }\n\n    .frezze-proof-v3 .fz-social-text {\n      font-size: 12px;\n      line-height: 1.25;\n    }\n\n    .frezze-proof-v3 .fz-title {\n      font-size: 20px;\n      margin-bottom: 12px;\n    }\n\n    .frezze-proof-v3 .fz-list {\n      gap: 12px;\n    }\n\n    .frezze-proof-v3 .fz-item {\n      grid-template-columns: 32px 1fr;\n      column-gap: 9px;\n    }\n\n    .frezze-proof-v3 .fz-check {\n      width: 24px;\n      height: 24px;\n      font-size: 14px;\n    }\n\n    .frezze-proof-v3 .fz-copy {\n      font-size: 13px;\n      line-height: 1.25;\n    }\n  }\n</style>\n\n<div class=\"frezze-proof-v3\">\n  <div class=\"fz-wrap\">\n\n    <div class=\"fz-rating\">\n      <div class=\"fz-stars\">★★★★★</div>\n      <div class=\"fz-rating-text\"><strong>Noté 4,8</strong> · 2847 avis vérifiés</div>\n    </div>\n\n    <div class=\"fz-social\">\n      <div class=\"fz-avatars\">\n        <img class=\"fz-avatar a1\" src=\"https://cdn.shopify.com/s/files/1/1086/1310/8043/files/Capture_d_ecran_2026-08-23_a_11.43.30.png?v=1790014631\" alt=\"Nathalie\" loading=\"lazy\">\n        <img class=\"fz-avatar a2\" src=\"https://cdn.shopify.com/s/files/1/1086/1310/8043/files/random-person_2.jpg?v=1790014634\" alt=\"Vincent\" loading=\"lazy\">\n        <img class=\"fz-avatar a3\" src=\"https://cdn.shopify.com/s/files/1/1086/1310/8043/files/random-person.jpg?v=1790014637\" alt=\"Céline\" loading=\"lazy\">\n      </div>\n\n      <p class=\"fz-social-text\">\n        <strong>Nathalie, Vincent, Céline</strong> et <strong>+10 000 personnes</strong> ont déjà arrêté de fumer avec <strong>FREZZE</strong>\n      </p>\n    </div>\n\n    <div class=\"fz-card\">\n      <h2 class=\"fz-title\">\n        Gardez le geste, <em>sans la<br>dépendance.</em>\n      </h2>\n\n      <div class=\"fz-list\">\n        <div class=\"fz-item\">\n          <div class=\"fz-check\">✓</div>\n          <p class=\"fz-copy\">\n            <strong>0 nicotine, 0 fumée, 0 combustion</strong>\n            <span class=\"fz-sub\">juste de l'air naturellement aromatisé</span>\n          </p>\n        </div>\n\n        <div class=\"fz-item\">\n          <div class=\"fz-check\">✓</div>\n          <p class=\"fz-copy\">\n            <strong>Efficace quand les alternatives échouent</strong>\n            <span class=\"fz-sub\">(Vape, Patchs, Gommes)</span>\n          </p>\n        </div>\n\n        <div class=\"fz-item\">\n          <div class=\"fz-check\">✓</div>\n          <p class=\"fz-copy\">\n            <strong>Protège des effets secondaires</strong>\n            <span class=\"fz-sub\">(Irritabilité, Anxiété, Prise de poids)</span>\n          </p>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {
-            "heading_tag": "h2"
-          }
-        },
         "badges": {
           "type": "badges",
           "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {
-            "show_taxes_notice": false
-          }
         },
         "rating": {
           "type": "rating",
@@ -351,14 +361,6 @@
         "separator": {
           "type": "separator",
           "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "collapse_content": false
-          }
         },
         "variant-picker": {
           "type": "variant_picker",
@@ -374,30 +376,15 @@
         "quantity-selector": {
           "type": "quantity_selector",
           "settings": {}
-        },
-        "buy-buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true,
-            "atc_button_background": "",
-            "atc_button_text_color": "",
-            "payment_button_background": "",
-            "payment_button_text_color": ""
-          }
         }
       },
       "block_order": [
         "liquid_ntpnNr",
-        "title",
         "badges",
-        "price",
         "rating",
         "separator",
-        "description",
         "variant-picker",
-        "quantity-selector",
-        "buy-buttons"
+        "quantity-selector"
       ],
       "settings": {
         "full_width": false,
@@ -477,6 +464,7 @@
     "bulletpoint_jWAErg",
     "avistruspilot_xffDzw",
     "blocks_YDeLir",
+    "17900149005bb8af81",
     "featured-product",
     "faq"
   ]
