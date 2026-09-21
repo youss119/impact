@@ -313,6 +313,7 @@
       "block_order": [
         "ai_gen_block_c74ce7e_edHgxX"
       ],
+      "disabled": true,
       "name": "Image pleine largeur",
       "settings": {}
     },
