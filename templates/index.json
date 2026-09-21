@@ -220,7 +220,8 @@
         "review_RxBMC8": {
           "type": "review",
           "settings": {
-            "review": "Très bon produit, le geste me manquait surtout dans les moments de stress. Avec Frezze, j’ai réussi à beaucoup réduire sans ressentir le même besoin.",
+            "image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_11_52_27_1_1.png",
+            "review": "Ça marche bien pour moi, j'ai bien diminué en 3 semaines. Juste le prix des recharges que je trouve un peu élevé mais bon.",
             "name": "Client",
             "date": "Il y a 2 semaines",
             "verified": true
