@@ -134,10 +134,10 @@
       "type": "bulletpoint",
       "name": "Comparaison poumons",
       "settings": {
-        "main_image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_09_58_25_1_1.png",
-        "image_max_width_desktop": 920,
+        "main_image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_09_58_25_1_1_1b3851da-8688-43c5-898d-66635b41ed86.png",
+        "image_max_width_desktop": 1260,
         "image_height_desktop": 520,
-        "image_height_mobile": 330,
+        "image_height_mobile": 280,
         "image_scale_desktop": 100,
         "image_scale_mobile": 108,
         "image_offset_x_desktop": 0,
