@@ -1,0 +1,664 @@
+{% liquid
+  assign section_id = 'frezze-reviews-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="frezze-reviews-section"
+  style="
+    --fr-bg: {{ section.settings.bg_color }};
+    --fr-text: {{ section.settings.text_color }};
+    --fr-muted: {{ section.settings.muted_color }};
+    --fr-card-bg: {{ section.settings.card_bg }};
+    --fr-card-border: {{ section.settings.card_border }};
+    --fr-star: {{ section.settings.star_color }};
+    --fr-badge-bg: {{ section.settings.badge_bg }};
+    --fr-badge-text: {{ section.settings.badge_text }};
+    --fr-radius: {{ section.settings.card_radius }}px;
+    --fr-gap: {{ section.settings.cards_gap }}px;
+    --fr-title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --fr-title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --fr-text-size-desktop: {{ section.settings.text_size_desktop }}px;
+    --fr-text-size-mobile: {{ section.settings.text_size_mobile }}px;
+    --fr-author-size-desktop: {{ section.settings.author_size_desktop }}px;
+    --fr-author-size-mobile: {{ section.settings.author_size_mobile }}px;
+    --fr-section-max: {{ section.settings.max_width }}px;
+    --fr-pad-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --fr-pad-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --fr-pad-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --fr-pad-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --fr-margin-top-desktop: {{ section.settings.margin_top_desktop }}px;
+    --fr-margin-bottom-desktop: {{ section.settings.margin_bottom_desktop }}px;
+    --fr-margin-top-mobile: {{ section.settings.margin_top_mobile }}px;
+    --fr-margin-bottom-mobile: {{ section.settings.margin_bottom_mobile }}px;
+    --fr-cards-per-row: {{ section.settings.cards_per_row }};
+    --fr-card-min-width-mobile: {{ section.settings.card_min_width_mobile }}px;
+  "
+>
+  <div class="fr-wrap">
+    {% if section.settings.show_header %}
+      <div class="fr-header">
+        {% if section.settings.overline != blank %}
+          <p class="fr-overline">{{ section.settings.overline }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2 class="fr-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <div class="fr-subheading">{{ section.settings.subheading }}</div>
+        {% endif %}
+
+        {% if section.settings.show_trust_row %}
+          <div class="fr-trust-row">
+            <div class="fr-trust-brand">
+              <span class="fr-trust-star">★</span>
+              <span class="fr-trust-name">{{ section.settings.trust_label }}</span>
+            </div>
+
+            <div class="fr-trust-boxes" aria-hidden="true">
+              {% for i in (1..5) %}
+                <span class="fr-trust-box">★</span>
+              {% endfor %}
+            </div>
+
+            <div class="fr-trust-meta">
+              <strong>{{ section.settings.rating_text }}</strong>
+              <span>{{ section.settings.review_count_text }}</span>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="fr-carousel">
+      {% for block in section.blocks %}
+        <article class="fr-card" {{ block.shopify_attributes }}>
+          <div class="fr-card-top">
+            <div class="fr-stars" aria-label="5 sur 5">
+              {% for i in (1..5) %}
+                <span>★</span>
+              {% endfor %}
+            </div>
+
+            {% if block.settings.verified_text != blank %}
+              <span class="fr-verified">{{ block.settings.verified_text }}</span>
+            {% endif %}
+          </div>
+
+          {% if block.settings.review != blank %}
+            <div class="fr-review">{{ block.settings.review }}</div>
+          {% endif %}
+
+          <div class="fr-card-bottom">
+            {% if block.settings.author != blank %}
+              <span class="fr-author">{{ block.settings.author }}</span>
+            {% endif %}
+
+            {% if block.settings.extra != blank %}
+              <span class="fr-extra">{{ block.settings.extra }}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    #{{ section_id }} {
+      background: var(--fr-bg);
+      color: var(--fr-text);
+      margin-top: var(--fr-margin-top-desktop);
+      margin-bottom: var(--fr-margin-bottom-desktop);
+      padding-top: var(--fr-pad-top-desktop);
+      padding-bottom: var(--fr-pad-bottom-desktop);
+    }
+
+    #{{ section_id }} .fr-wrap {
+      max-width: var(--fr-section-max);
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+
+    #{{ section_id }} .fr-header {
+      margin-bottom: 14px;
+    }
+
+    #{{ section_id }} .fr-overline {
+      margin: 0 0 4px;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fr-muted);
+    }
+
+    #{{ section_id }} .fr-heading {
+      margin: 0;
+      font-size: var(--fr-title-size-desktop);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fr-text);
+    }
+
+    #{{ section_id }} .fr-subheading {
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--fr-muted);
+    }
+
+    #{{ section_id }} .fr-trust-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    #{{ section_id }} .fr-trust-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    #{{ section_id }} .fr-trust-star {
+      color: var(--fr-star);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    #{{ section_id }} .fr-trust-name {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    #{{ section_id }} .fr-trust-boxes {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    #{{ section_id }} .fr-trust-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      background: var(--fr-star);
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    #{{ section_id }} .fr-trust-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      line-height: 1.2;
+      color: var(--fr-text);
+    }
+
+    #{{ section_id }} .fr-trust-meta span {
+      color: var(--fr-muted);
+    }
+
+    #{{ section_id }} .fr-carousel {
+      display: grid;
+      grid-template-columns: repeat(var(--fr-cards-per-row), minmax(0, 1fr));
+      gap: var(--fr-gap);
+    }
+
+    #{{ section_id }} .fr-card {
+      background: var(--fr-card-bg);
+      border: 1px solid var(--fr-card-border);
+      border-radius: var(--fr-radius);
+      padding: 14px;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    #{{ section_id }} .fr-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    #{{ section_id }} .fr-stars {
+      display: flex;
+      gap: 2px;
+      color: var(--fr-star);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    #{{ section_id }} .fr-verified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--fr-badge-bg);
+      color: var(--fr-badge-text);
+      font-size: 11px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    #{{ section_id }} .fr-review {
+      font-size: var(--fr-text-size-desktop);
+      line-height: 1.5;
+      color: var(--fr-text);
+      margin-bottom: 12px;
+    }
+
+    #{{ section_id }} .fr-card-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    #{{ section_id }} .fr-author {
+      font-size: var(--fr-author-size-desktop);
+      line-height: 1.2;
+      font-weight: 700;
+      color: var(--fr-text);
+    }
+
+    #{{ section_id }} .fr-extra {
+      font-size: 12px;
+      line-height: 1.3;
+      color: var(--fr-muted);
+    }
+
+    @media screen and (max-width: 999px) {
+      #{{ section_id }} {
+        margin-top: var(--fr-margin-top-mobile);
+        margin-bottom: var(--fr-margin-bottom-mobile);
+        padding-top: var(--fr-pad-top-mobile);
+        padding-bottom: var(--fr-pad-bottom-mobile);
+      }
+
+      #{{ section_id }} .fr-heading {
+        font-size: var(--fr-title-size-mobile);
+      }
+
+      #{{ section_id }} .fr-carousel {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(var(--fr-card-min-width-mobile), 86%);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 2px;
+      }
+
+      #{{ section_id }} .fr-carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      #{{ section_id }} .fr-card {
+        scroll-snap-align: start;
+        min-height: 175px;
+      }
+
+      #{{ section_id }} .fr-review {
+        font-size: var(--fr-text-size-mobile);
+      }
+
+      #{{ section_id }} .fr-author {
+        font-size: var(--fr-author-size-mobile);
+      }
+
+      #{{ section_id }} .fr-wrap {
+        padding: 0 12px;
+      }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Avis clients Frezze",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Afficher l’en-tête",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "overline",
+      "label": "Petit texte au-dessus",
+      "default": "Avis clients"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Ils ont remplacé la cigarette par Frezze"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sous-titre",
+      "default": "Des retours simples, rassurants et très lisibles pour aider à passer à l’action."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_row",
+      "label": "Afficher la ligne Trustpilot",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_label",
+      "label": "Nom à afficher",
+      "default": "Trustpilot"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texte note",
+      "default": "4,8/5"
+    },
+    {
+      "type": "text",
+      "id": "review_count_text",
+      "label": "Texte nombre d’avis",
+      "default": "Basé sur 2 847 avis vérifiés"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Cartes visibles sur ordinateur",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "card_min_width_mobile",
+      "min": 220,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "label": "Largeur carte mobile",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "cards_gap",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace entre les cartes",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Arrondi des cartes",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 18,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille titre — ordinateur",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille titre — mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille texte avis — ordinateur",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille texte avis — mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "author_size_desktop",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille nom auteur — ordinateur",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "author_size_mobile",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Taille nom auteur — mobile",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 700,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Largeur maximale de la section",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fond section",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Couleur texte",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Texte secondaire",
+      "default": "#6B7280"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Fond cartes",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Bordure cartes",
+      "default": "#EAEAEA"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Couleur étoiles / Trustpilot",
+      "default": "#00B67A"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Fond badge vérifié",
+      "default": "#F3F4F6"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Texte badge vérifié",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — ordinateur",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — ordinateur",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge haut — ordinateur",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge bas — ordinateur",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge haut — mobile",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge bas — mobile",
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Texte de l’avis",
+          "default": "Très bon produit, le geste me manquait surtout dans les moments de stress. Avec Frezze, j’ai réussi à beaucoup réduire sans ressentir le même besoin."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Nom / prénom",
+          "default": "Camille"
+        },
+        {
+          "type": "text",
+          "id": "extra",
+          "label": "Texte secondaire",
+          "default": "Avis vérifié"
+        },
+        {
+          "type": "text",
+          "id": "verified_text",
+          "label": "Badge",
+          "default": "Vérifié"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis clients Frezze",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}
