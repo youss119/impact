@@ -191,7 +191,7 @@
           "type": "review",
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_12_06_54_1.png",
-            "review": "Ça fait maintenant 2 mois que j’ai arrêté de fumer et je ne pensais pas voir autant de changements. Je respire mieux, je me sens moins fatiguée, j’ai retrouvé de l’énergie et surtout je me trouve beaucoup plus belle qu’avant. Mon teint a changé, mon sourire aussi, je n’ai plus cet arrière te odeur de cigarette sur moi toute la journée.",
+            "review": "Ça fait maintenant 2 mois que j’ai arrêté de fumer et je ne pensais pas voir autant de changements. Je respire mieux, je me sens moins fatiguée, j’ai retrouvé de l’énergie et surtout je me trouve beaucoup plus belle qu’avant. Mon teint a changé, mon sourire aussi",
             "name": "Client",
             "date": "Il y a 2 semaines",
             "verified": true
@@ -200,6 +200,7 @@
         "review_iEGDah": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_11_52_28_7_1.png",
             "review": "Très bon produit, le geste me manquait surtout dans les moments de stress. Avec Frezze, j’ai réussi à beaucoup réduire sans ressentir le même besoin.",
             "name": "Client",
             "date": "Il y a 2 semaines",
