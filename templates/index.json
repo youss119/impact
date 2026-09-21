@@ -293,6 +293,29 @@
         "header_gap_mobile": 11
       }
     },
+    "blocks_YDeLir": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c74ce7e_edHgxX": {
+          "type": "ai_gen_block_c74ce7e",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_16_09_58.png",
+            "image_link": "",
+            "desktop_width_percent": 100,
+            "image_fit": "contain",
+            "border_radius": 0,
+            "placeholder_background": "#f0f0f0",
+            "placeholder_text_color": "#1a1a1a"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c74ce7e_edHgxX"
+      ],
+      "name": "Image pleine largeur",
+      "settings": {}
+    },
     "featured-product": {
       "type": "featured-product",
       "blocks": {
@@ -450,6 +473,7 @@
     "178997668447d0802f",
     "bulletpoint_jWAErg",
     "avistruspilot_xffDzw",
+    "blocks_YDeLir",
     "featured-product",
     "faq"
   ]
