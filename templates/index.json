@@ -210,9 +210,10 @@
         "review_EgkaeJ": {
           "type": "review",
           "settings": {
-            "review": "Très bon produit, le geste me manquait surtout dans les moments de stress. Avec Frezze, j’ai réussi à beaucoup réduire sans ressentir le même besoin.",
+            "image": "shopify://shop_images/ChatGPT_Image_21_sept._2026_11_52_27_3_1.png",
+            "review": "Reçu rapidement, tout est bien emballé. Je tire sur la cannelle quand j'ai besoin de me poser et ça fait le boulot.",
             "name": "Client",
-            "date": "Il y a 2 semaines",
+            "date": "Il y a 1 semaines",
             "verified": true
           }
         },
