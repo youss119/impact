@@ -1,0 +1,918 @@
+{% liquid
+  assign left_points = section.settings.left_points | newline_to_br | split: '<br />'
+  assign right_points = section.settings.right_points | newline_to_br | split: '<br />'
+%}
+
+{% style %}
+
+#frezze-compare-{{ section.id }} {
+  background: {{ section.settings.section_bg }};
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+}
+
+#frezze-compare-{{ section.id }} .fc-wrap {
+  width: min(
+    calc(100% - {{ section.settings.side_padding_desktop | times: 2 }}px),
+    {{ section.settings.max_width }}px
+  );
+  margin: 0 auto;
+}
+
+
+/* =========================
+   IMAGE
+   ========================= */
+
+#frezze-compare-{{ section.id }} .fc-media {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#frezze-compare-{{ section.id }} .fc-image-window {
+  position: relative;
+
+  width: 100%;
+  max-width: {{ section.settings.image_max_width_desktop }}px;
+
+  height: {{ section.settings.image_height_desktop }}px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border-radius: {{ section.settings.image_radius }}px;
+}
+
+#frezze-compare-{{ section.id }} .fc-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform:
+    translate(
+      {{ section.settings.image_offset_x_desktop }}px,
+      {{ section.settings.image_offset_y_desktop }}px
+    )
+    scale({{ section.settings.image_scale_desktop | divided_by: 100.0 }});
+
+  transform-origin: center;
+}
+
+#frezze-compare-{{ section.id }} .fc-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+}
+
+
+/* =========================
+   CARTES
+   ========================= */
+
+#frezze-compare-{{ section.id }} .fc-cards {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: {{ section.settings.cards_gap_desktop }}px;
+
+  margin-top: -{{ section.settings.cards_overlap_desktop }}px;
+}
+
+#frezze-compare-{{ section.id }} .fc-card {
+  box-sizing: border-box;
+
+  padding: {{ section.settings.card_padding_desktop }}px;
+
+  border-radius: {{ section.settings.card_radius }}px;
+
+  {% if section.settings.show_border %}
+    border: 1px solid {{ section.settings.border_color }};
+  {% endif %}
+
+  {% if section.settings.show_shadow %}
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  {% endif %}
+}
+
+#frezze-compare-{{ section.id }} .fc-card--bad {
+  background: {{ section.settings.left_card_bg }};
+}
+
+#frezze-compare-{{ section.id }} .fc-card--good {
+  background: {{ section.settings.right_card_bg }};
+}
+
+
+/* TITRES */
+
+#frezze-compare-{{ section.id }} .fc-title {
+  margin: 0 0 {{ section.settings.title_bottom_spacing }}px;
+
+  color: {{ section.settings.title_color }};
+
+  font-size: {{ section.settings.title_size_desktop }}px;
+  line-height: 1.12;
+
+  font-weight: 700;
+}
+
+
+/* LISTES */
+
+#frezze-compare-{{ section.id }} .fc-list {
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+#frezze-compare-{{ section.id }} .fc-list li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  color: {{ section.settings.text_color }};
+
+  font-size: {{ section.settings.text_size_desktop }}px;
+  line-height: 1.35;
+}
+
+#frezze-compare-{{ section.id }} .fc-list li + li {
+  margin-top: {{ section.settings.bullet_spacing }}px;
+}
+
+
+/* BULLETS */
+
+#frezze-compare-{{ section.id }} .fc-bullet {
+  flex: 0 0 auto;
+
+  width: 18px;
+
+  margin-top: 1px;
+
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#frezze-compare-{{ section.id }} .fc-card--bad .fc-bullet {
+  color: {{ section.settings.left_bullet_color }};
+}
+
+#frezze-compare-{{ section.id }} .fc-card--good .fc-bullet {
+  color: {{ section.settings.right_bullet_color }};
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media screen and (max-width: 749px) {
+
+  #frezze-compare-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-wrap {
+    width: calc(
+      100% - {{ section.settings.side_padding_mobile | times: 2 }}px
+    );
+  }
+
+  #frezze-compare-{{ section.id }} .fc-image-window {
+    max-width: 100%;
+
+    height: {{ section.settings.image_height_mobile }}px;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-image {
+    transform:
+      translate(
+        {{ section.settings.image_offset_x_mobile }}px,
+        {{ section.settings.image_offset_y_mobile }}px
+      )
+      scale({{ section.settings.image_scale_mobile | divided_by: 100.0 }});
+  }
+
+  #frezze-compare-{{ section.id }} .fc-cards {
+    grid-template-columns: 1fr;
+
+    gap: {{ section.settings.cards_gap_mobile }}px;
+
+    margin-top: -{{ section.settings.cards_overlap_mobile }}px;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-card {
+    padding: {{ section.settings.card_padding_mobile }}px;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+
+    margin-bottom: {{ section.settings.title_bottom_spacing_mobile }}px;
+  }
+
+  #frezze-compare-{{ section.id }} .fc-list li {
+    font-size: {{ section.settings.text_size_mobile }}px;
+
+    gap: 8px;
+  }
+
+}
+
+{% endstyle %}
+
+
+
+<section id="frezze-compare-{{ section.id }}">
+
+  <div class="fc-wrap">
+
+
+    <!-- IMAGE -->
+
+    <div class="fc-media">
+
+      <div class="fc-image-window">
+
+        {% if section.settings.main_image != blank %}
+
+          <img
+            class="fc-image"
+            src="{{ section.settings.main_image | image_url: width: 2000 }}"
+            alt="{{ section.settings.main_image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.main_image.width }}"
+            height="{{ section.settings.main_image.height }}"
+          >
+
+        {% else %}
+
+          <div class="fc-placeholder">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+
+
+
+    <!-- CARTES -->
+
+    <div class="fc-cards">
+
+
+      <!-- TABAC -->
+
+      <div class="fc-card fc-card--bad">
+
+        {% if section.settings.left_title != blank %}
+
+          <h3 class="fc-title">
+            {{ section.settings.left_title }}
+          </h3>
+
+        {% endif %}
+
+
+        <ul class="fc-list">
+
+          {% for item in left_points %}
+
+            {% assign clean_item = item | strip %}
+
+            {% if clean_item != blank %}
+
+              <li>
+
+                <span class="fc-bullet">
+                  {{ section.settings.left_bullet }}
+                </span>
+
+                <span>
+                  {{ clean_item }}
+                </span>
+
+              </li>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </ul>
+
+      </div>
+
+
+
+      <!-- FREZZE -->
+
+      <div class="fc-card fc-card--good">
+
+        {% if section.settings.right_title != blank %}
+
+          <h3 class="fc-title">
+            {{ section.settings.right_title }}
+          </h3>
+
+        {% endif %}
+
+
+        <ul class="fc-list">
+
+          {% for item in right_points %}
+
+            {% assign clean_item = item | strip %}
+
+            {% if clean_item != blank %}
+
+              <li>
+
+                <span class="fc-bullet">
+                  {{ section.settings.right_bullet }}
+                </span>
+
+                <span>
+                  {{ clean_item }}
+                </span>
+
+              </li>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </ul>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Comparaison poumons",
+
+  "tag": "section",
+
+  "class": "section-frezze-comparison",
+
+  "settings": [
+
+
+    {
+      "type": "header",
+      "content": "Image"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Image des poumons"
+    },
+
+    {
+      "type": "range",
+      "id": "image_max_width_desktop",
+      "min": 400,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Largeur image — ordinateur",
+      "default": 920
+    },
+
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "min": 250,
+      "max": 850,
+      "step": 10,
+      "unit": "px",
+      "label": "Hauteur image — ordinateur",
+      "default": 520
+    },
+
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 180,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Hauteur image — mobile",
+      "default": 330
+    },
+
+
+    {
+      "type": "header",
+      "content": "Zoom image"
+    },
+
+    {
+      "type": "range",
+      "id": "image_scale_desktop",
+      "min": 80,
+      "max": 160,
+      "step": 1,
+      "unit": "%",
+      "label": "Zoom — ordinateur",
+      "default": 100
+    },
+
+    {
+      "type": "range",
+      "id": "image_scale_mobile",
+      "min": 80,
+      "max": 160,
+      "step": 1,
+      "unit": "%",
+      "label": "Zoom — mobile",
+      "default": 108
+    },
+
+
+    {
+      "type": "header",
+      "content": "Position image — ordinateur"
+    },
+
+    {
+      "type": "range",
+      "id": "image_offset_x_desktop",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal",
+      "default": 0
+    },
+
+    {
+      "type": "range",
+      "id": "image_offset_y_desktop",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical",
+      "default": 0
+    },
+
+
+    {
+      "type": "header",
+      "content": "Position image — mobile"
+    },
+
+    {
+      "type": "range",
+      "id": "image_offset_x_mobile",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal",
+      "default": 0
+    },
+
+    {
+      "type": "range",
+      "id": "image_offset_y_mobile",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical",
+      "default": -8
+    },
+
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Arrondi image",
+      "default": 0
+    },
+
+
+    {
+      "type": "header",
+      "content": "Carte tabac"
+    },
+
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Titre",
+      "default": "Ce que le tabac peut provoquer"
+    },
+
+    {
+      "type": "textarea",
+      "id": "left_points",
+      "label": "Points — 1 par ligne",
+      "default": "Cancer du poumon\nDécès prématuré\nAVC\nRisque d’infarctus\nDifficultés respiratoires"
+    },
+
+    {
+      "type": "text",
+      "id": "left_bullet",
+      "label": "Symbole",
+      "default": "•"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Carte Frezze"
+    },
+
+    {
+      "type": "text",
+      "id": "right_title",
+      "label": "Titre",
+      "default": "Avec Frezze"
+    },
+
+    {
+      "type": "textarea",
+      "id": "right_points",
+      "label": "Points — 1 par ligne",
+      "default": "100 % arômes naturels\nVérifié en laboratoire\n0 nicotine · 0 tabac\nSans fumée · sans vapeur\nUtilisation illimitée"
+    },
+
+    {
+      "type": "text",
+      "id": "right_bullet",
+      "label": "Symbole",
+      "default": "✓"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Fond section",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "color",
+      "id": "left_card_bg",
+      "label": "Fond carte tabac",
+      "default": "#F8E4E4"
+    },
+
+    {
+      "type": "color",
+      "id": "right_card_bg",
+      "label": "Fond carte Frezze",
+      "default": "#E2F1F1"
+    },
+
+    {
+      "type": "color",
+      "id": "left_bullet_color",
+      "label": "Bullet tabac",
+      "default": "#B95656"
+    },
+
+    {
+      "type": "color",
+      "id": "right_bullet_color",
+      "label": "Bullet Frezze",
+      "default": "#253A2F"
+    },
+
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Titres",
+      "default": "#111111"
+    },
+
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texte",
+      "default": "#222222"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Style cartes"
+    },
+
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Arrondi",
+      "default": 18
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Afficher bordure",
+      "default": false
+    },
+
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Couleur bordure",
+      "default": "#E5E5E5"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_shadow",
+      "label": "Afficher ombre légère",
+      "default": false
+    },
+
+
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding cartes — ordinateur",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding cartes — mobile",
+      "default": 15
+    },
+
+
+    {
+      "type": "header",
+      "content": "Texte"
+    },
+
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre cartes — ordinateur",
+      "default": 21
+    },
+
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 15,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Titre cartes — mobile",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Texte — ordinateur",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Texte — mobile",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "title_bottom_spacing",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace sous titre — ordinateur",
+      "default": 10
+    },
+
+    {
+      "type": "range",
+      "id": "title_bottom_spacing_mobile",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace sous titre — mobile",
+      "default": 8
+    },
+
+    {
+      "type": "range",
+      "id": "bullet_spacing",
+      "min": 2,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Espace entre bullets",
+      "default": 7
+    },
+
+
+    {
+      "type": "header",
+      "content": "Espacement cartes"
+    },
+
+    {
+      "type": "range",
+      "id": "cards_gap_desktop",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Écart cartes — ordinateur",
+      "default": 12
+    },
+
+    {
+      "type": "range",
+      "id": "cards_gap_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Écart cartes — mobile",
+      "default": 8
+    },
+
+    {
+      "type": "range",
+      "id": "cards_overlap_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Remonter cartes sur image — ordinateur",
+      "default": 18
+    },
+
+    {
+      "type": "range",
+      "id": "cards_overlap_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Remonter cartes sur image — mobile",
+      "default": 10
+    },
+
+
+    {
+      "type": "header",
+      "content": "Section"
+    },
+
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 500,
+      "max": 1500,
+      "step": 20,
+      "unit": "px",
+      "label": "Largeur maximale",
+      "default": 1100
+    },
+
+    {
+      "type": "range",
+      "id": "side_padding_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Marge côtés — ordinateur",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "side_padding_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Marge côtés — mobile",
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — ordinateur",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — ordinateur",
+      "default": 24
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding haut — mobile",
+      "default": 16
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bas — mobile",
+      "default": 16
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Comparaison poumons"
+    }
+  ]
+}
+
+{% endschema %}
