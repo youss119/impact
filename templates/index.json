@@ -350,10 +350,6 @@
             "variant_image_options": "",
             "size_chart_page": ""
           }
-        },
-        "quantity-selector": {
-          "type": "quantity_selector",
-          "settings": {}
         }
       },
       "block_order": [
@@ -361,8 +357,7 @@
         "badges",
         "rating",
         "separator",
-        "variant-picker",
-        "quantity-selector"
+        "variant-picker"
       ],
       "settings": {
         "full_width": false,
